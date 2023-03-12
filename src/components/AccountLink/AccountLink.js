@@ -1,4 +1,3 @@
-import React from "react";
 import avaPath from "../../images/avatar.svg";
 import "./AccountLink.css";
 

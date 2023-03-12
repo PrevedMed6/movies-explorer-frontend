@@ -1,13 +1,22 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import AccountLink from "../AccountLink/AccountLink";
 import Logo from "../Logo/Logo";
+import Navigation from "../Navigation/Navigation";
+import Popup from "../Popup/Popup";
 import "./Header.css";
 
 function Header(props) {
   const navigate = useNavigate();
   const [showBurger, setShowBurger] = React.useState({});
-
+  const horisontalMenuLinks = [
+    { href: "/movies", text: "Фильмы" },
+    { href: "/saved-movies", text: "Сохраненные фильмы" },
+  ];
+  const verticalMenuLinks = [
+    { href: "/", text: "Главная" },
+    { href: "/movies", text: "Фильмы" },
+    { href: "/saved-movies", text: "Сохраненные фильмы" },
+  ];
   const resizeHandler = () => {
     setShowBurger(document.documentElement.clientWidth <= 768);
   };
@@ -21,21 +30,21 @@ function Header(props) {
   }, []);
 
   function goToLogIn() {
-    navigate("/signup", { replace: true });
+    navigate("/signin", { replace: true });
   }
 
-  const logedIn = props.logedIn === "true";
   return (
-    <header className="header">
+    <header className={props.colored ? "header header_colored" : "header"}>
+      <Popup isOpen={true} links={verticalMenuLinks}/>
       <Logo />
-      {!logedIn ? (
-        <nav className="header__navbar">
-          <a href="/signup" className="header__nav-link">
+      {!props.logedIn ? (
+        <nav className="header__menu">
+          <a href="/signup" className="header__menu-link">
             Регистрация
           </a>
           <button
             type="button"
-            className="header__nav-button"
+            className="header__menu-button"
             onClick={goToLogIn}
           >
             Войти
@@ -44,17 +53,7 @@ function Header(props) {
       ) : showBurger ? (
         <button type="button" className="header__burger-button"></button>
       ) : (
-        <div className="header__nav-area">
-          <nav className="header__navbar header__navbar_logged-in">
-            <a href="/movies" className="header__nav-link">
-              Фильмы
-            </a>
-            <a href="/saved-movies" className="header__nav-link">
-              Сохраненные фильмы
-            </a>
-          </nav>
-          <AccountLink />
-        </div>
+        <Navigation links={horisontalMenuLinks} />
       )}
     </header>
   );

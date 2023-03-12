@@ -1,4 +1,3 @@
-import React from "react";
 import Line from "../Line/Line";
 import "./Footer.css";
 
