@@ -7,7 +7,8 @@ import "./Header.css";
 
 function Header(props) {
   const navigate = useNavigate();
-  const [showBurger, setShowBurger] = React.useState({});
+  const [showBurger, setShowBurger] = React.useState();
+  const [menuIsOpen, setmenuIsOpen] = React.useState(false);
   const horisontalMenuLinks = [
     { href: "/movies", text: "Фильмы" },
     { href: "/saved-movies", text: "Сохраненные фильмы" },
@@ -33,9 +34,17 @@ function Header(props) {
     navigate("/signin", { replace: true });
   }
 
+  function showMenu() {
+    setmenuIsOpen(true);
+  }
+
+  function hideMenu() {
+    setmenuIsOpen(false);
+  }
+
   return (
     <header className={props.colored ? "header header_colored" : "header"}>
-      <Popup isOpen={true} links={verticalMenuLinks}/>
+      <Popup isOpen={menuIsOpen} links={verticalMenuLinks} onClose={hideMenu}/>
       <Logo />
       {!props.logedIn ? (
         <nav className="header__menu">
@@ -51,7 +60,11 @@ function Header(props) {
           </button>
         </nav>
       ) : showBurger ? (
-        <button type="button" className="header__burger-button"></button>
+        <button
+          type="button"
+          className="header__burger-button"
+          onClick={showMenu}
+        ></button>
       ) : (
         <Navigation links={horisontalMenuLinks} />
       )}

@@ -4,7 +4,7 @@ import "./Popup.css";
 function Popup(props) {
   function handleClose(e) {
     if (e.target === e.currentTarget) {
-      // props.onClose();
+      props.onClose();
     }
   }
   return (
