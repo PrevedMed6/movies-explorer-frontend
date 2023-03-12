@@ -6,6 +6,7 @@
   max-width: 400px;
   height: 100vh;
   margin: auto;
+  font-weight: 400;
 }
 
 .page-not-found__error-code {
@@ -29,10 +30,10 @@
   color: #4285f4;
   font-style: normal;
   text-decoration: none;
+  transition: opacity 0.3s linear;
 }
 
 .page-not-found__nav-link:hover {
-  transition: opacity 0.3s linear;
   opacity: 0.5;
 }
 

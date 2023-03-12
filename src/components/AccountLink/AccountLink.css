@@ -1,0 +1,27 @@
+.account-link {
+  min-width: 100px;
+  display: flex;
+  color: #FFF;
+  cursor: pointer;
+  font-style: normal;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.3;
+  justify-content: space-between;
+  align-items: baseline;
+  transition: opacity .3s linear;
+}
+
+.account-link:hover {
+  opacity: .5;
+}
+
+.account-link__icon {
+  width: 26px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: #313131;
+  padding: 8px 7.25px;
+  box-sizing: border-box;
+}
