@@ -1,5 +1,14 @@
+import "./Promo.css";
 function Promo() {
-  return <p>промо</p>;
+  return (
+    <section className="promo">
+      <div className="promo__background">
+        <h1 className="promo__title">
+          Учебный проект студентки факультета Веб-разработки
+        </h1>
+      </div>
+    </section>
+  );
 }
 
 export default Promo;
