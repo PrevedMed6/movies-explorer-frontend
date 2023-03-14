@@ -1,0 +1,8 @@
+.about-project {
+  display: flex;
+  width: calc(100% - 140px);
+  justify-content: center;
+  margin: auto;
+  flex-direction: column;
+  padding: 110px 0;
+}
