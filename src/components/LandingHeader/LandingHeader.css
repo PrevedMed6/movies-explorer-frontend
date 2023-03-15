@@ -2,7 +2,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 23px;
   line-height: 1.23;
   letter-spacing: -0.04em;
   margin: 0 0 22px 0;
@@ -12,6 +12,6 @@
   .landing-header__text {
     font-size: 18px;
     line-height: 1.22;
-    margin-bottom: 27px;
+    margin-bottom: 28px;
   }
 }

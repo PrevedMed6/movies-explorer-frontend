@@ -3,7 +3,7 @@ import "./AboutProject.css";
 
 function AboutProject() {
   return (
-    <section className="about-project" id="about-project" aria-label="about-project">
+    <article className="about-project" id="about-project" aria-label="about-project">
       <LandingHeader text="О проекте"/>
       <div className="about-project__articles">
         <div className="about-project__article">
@@ -16,12 +16,12 @@ function AboutProject() {
         </div>
       </div>
       <div className="about-project__timeline">
-        <div class="about-project__timeline-cell about-project__timeline-cell_header about-project__timeline-cell_green">1 неделя</div>
-        <div class="about-project__timeline-cell about-project__timeline-cell_header about-project__timeline-cell_gray">4 недели</div>
-        <div class="about-project__timeline-cell about-project__timeline-text">Back-end</div>
-        <div class="about-project__timeline-cell about-project__timeline-text">Front-end</div>
+        <div className="about-project__timeline-cell about-project__timeline-cell_header about-project__timeline-cell_green">1 неделя</div>
+        <div className="about-project__timeline-cell about-project__timeline-cell_header about-project__timeline-cell_gray">4 недели</div>
+        <div className="about-project__timeline-cell about-project__timeline-text">Back-end</div>
+        <div className="about-project__timeline-cell about-project__timeline-text">Front-end</div>
       </div>
-    </section>
+    </article>
   );
 }
 
