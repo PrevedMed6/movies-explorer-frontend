@@ -6,3 +6,127 @@
   flex-direction: column;
   padding: 110px 0;
 }
+
+.about-project__articles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  column-gap: 40px;
+  margin: 70px 0 110px 0;
+}
+
+.about-project__article {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  row-gap: 26px;
+}
+
+.about-project__main-text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.about-project__text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.43;
+  margin: 0;
+}
+
+.about-project__timeline {
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  grid-template-rows: 36px 1fr;
+  row-gap: 14px;
+}
+
+.about-project__timeline-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.21;
+  color:#8B8B8B;
+}
+
+.about-project__timeline-cell_header {
+  font-weight: 400;
+}
+
+.about-project__timeline-cell_green {
+  color: #000;
+  background-color: #3ddc84;
+}
+
+.about-project__timeline-cell_gray {
+  color: #fff;
+  background-color: #303030;
+}
+
+@media screen and (max-width: 768px) {
+  .about-project {
+    width: calc(100% - 100px);
+    padding: 90px 0;
+  }
+  .about-project__articles {
+    column-gap: 30px;
+    margin: 70px 0 93px 0;
+  }
+  .about-project__text {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .about-project__article {
+    row-gap: 22px;
+  }
+  .about-project__timeline {
+    grid-template-columns: 20.95% 1fr;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .about-project {
+    width: calc(100% - 36px);
+    padding: 70px 0;
+  }
+  .about-project__articles {
+    grid-template-columns: 1fr;
+    margin: 60px 0;
+  }
+  .about-project__articles {
+    column-gap: 0px;
+    row-gap: 56px;
+  }
+
+  .about-project__article {
+    row-gap: 16px;
+  }
+
+  .about-project__main-text {
+    font-size: 18px;
+    line-height: 1.22;
+  }
+  .about-project__text {
+    font-size: 11px;
+    line-height: 1.46;
+  }
+  .about-project__timeline-cell
+  {
+    font-size: 11px;
+    line-height: 1.18;
+  }
+
+  .about-project__timeline {
+    grid-template-columns: minmax(22%, 35%) 1fr;
+    grid-template-rows: 35px 1fr;
+    row-gap: 10px;
+  }
+}
