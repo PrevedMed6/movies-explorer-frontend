@@ -3,5 +3,9 @@
   border: none;
   height: 1px;
   margin: 0;
+  background-color: #DADADA;
+}
+
+.line__gray {
   background-color: #424242;
 }

@@ -8,7 +8,7 @@ function Footer() {
       <p className="footer__text">
         Учебный проект Яндекс.Практикум х BeatFilm
       </p>
-      <Line />
+      <Line isGray={true} />
       <div className="footer__bottom">
         <div className="footer__copyright">&copy; {currentYear}</div>
         <div className="footer__links">

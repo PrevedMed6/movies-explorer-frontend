@@ -1,7 +1,7 @@
 import "./Line.css";
 
-function Line() {
-  return <hr className="line"></hr>;
+function Line(props) {
+  return <hr className={`line ${props.isGray?"line__gray":""}`}></hr>;
 }
 
 export default Line;

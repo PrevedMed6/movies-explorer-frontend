@@ -1,0 +1,25 @@
+.about-me-link {
+  display: flex;
+  text-decoration: none;
+  transition: opacity 0.3s linear;
+  justify-content: space-between;
+}
+
+.about-me-link:hover {
+  opacity: 0.5;
+}
+
+.about-me-link__text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.67;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+  color: #fff;
+  margin: 20px 0 19px 0;
+}
+
+.about-me-link__arrow {
+  width: 29px;
+}

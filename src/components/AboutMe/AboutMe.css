@@ -1,0 +1,103 @@
+.about-me {
+  display: flex;
+  width: calc(100% - 140px);
+  max-width: 1140px;
+  justify-content: center;
+  margin: auto;
+  flex-direction: column;
+  padding: 110px 0 106px 0;
+}
+
+.about-me__profile {
+  margin: 66px 0 101px 0;
+  display: grid;
+  grid-template-columns: 600px 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "name photo"
+    "description photo"
+    "text photo"
+    "repo photo";
+}
+
+.about-me__name {
+  grid-area: name;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1.16;
+  margin: 0 0 18px 0;
+  letter-spacing: -0.04em;
+}
+
+.about-me__description {
+  grid-area: description;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11;
+  margin: 0 0 26px 0;
+}
+
+.about-me__text {
+  grid-area: text;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.57;
+  margin: 0 0 99px 0;
+}
+
+.about-me__repo {
+  grid-area: repo;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.21;
+  text-decoration: none;
+  color: #fff;
+  transition: opacity 0.3s linear;
+}
+
+.about-me__repo:hover {
+  opacity: 0.5;
+}
+
+.about-me__photo-container {
+  grid-area: photo;
+  display: flex;
+  justify-content: flex-end;
+}
+.about-me__photo {
+  width: 270px;
+  height: 327px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.about-me__portfolio {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-me__portfolio-header {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.11;
+  color: #8b8b8b;
+  margin: 0 0 50px 0;
+}
+
+.about-me__portfolio-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.about-me__portfolio-item {
+  list-style-type: none;
+  margin: 0;
+}

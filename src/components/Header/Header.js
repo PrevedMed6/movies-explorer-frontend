@@ -44,30 +44,36 @@ function Header(props) {
 
   return (
     <header className={props.colored ? "header header_colored" : "header"}>
-      <Popup isOpen={menuIsOpen} links={verticalMenuLinks} onClose={hideMenu}/>
-      <Logo />
-      {!props.logedIn ? (
-        <nav className="header__menu">
-          <a href="/signup" className="header__menu-link">
-            Регистрация
-          </a>
+      <div className="header__container">
+        <Popup
+          isOpen={menuIsOpen}
+          links={verticalMenuLinks}
+          onClose={hideMenu}
+        />
+        <Logo />
+        {!props.logedIn ? (
+          <nav className="header__menu">
+            <a href="/signup" className="header__menu-link">
+              Регистрация
+            </a>
+            <button
+              type="button"
+              className="header__menu-button"
+              onClick={goToLogIn}
+            >
+              Войти
+            </button>
+          </nav>
+        ) : showBurger ? (
           <button
             type="button"
-            className="header__menu-button"
-            onClick={goToLogIn}
-          >
-            Войти
-          </button>
-        </nav>
-      ) : showBurger ? (
-        <button
-          type="button"
-          className="header__burger-button"
-          onClick={showMenu}
-        ></button>
-      ) : (
-        <Navigation links={horisontalMenuLinks} />
-      )}
+            className="header__burger-button"
+            onClick={showMenu}
+          ></button>
+        ) : (
+          <Navigation links={horisontalMenuLinks} />
+        )}
+      </div>
     </header>
   );
 }
