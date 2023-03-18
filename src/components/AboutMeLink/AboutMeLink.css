@@ -3,6 +3,7 @@
   text-decoration: none;
   transition: opacity 0.3s linear;
   justify-content: space-between;
+  box-sizing: border-box;
 }
 
 .about-me-link:hover {
@@ -17,9 +18,27 @@
   letter-spacing: -0.04em;
   text-decoration: none;
   color: #fff;
-  margin: 20px 0 19px 0;
+  margin: 0 0 19px 0;
 }
 
 .about-me-link__arrow {
   width: 29px;
+}
+
+@media screen and (max-width: 768px) {
+  .about-me-link__text {
+    font-size: 28px;
+    line-height: 1.79;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .about-me-link__arrow {
+    width: 18px;
+    height: 28px;
+  }
+  .about-me-link__text {
+    font-size: 18px;
+    line-height: 1.56;
+  }
 }

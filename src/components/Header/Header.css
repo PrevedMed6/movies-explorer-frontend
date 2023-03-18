@@ -75,6 +75,7 @@
     width: calc(100% - 60px);
   }
 }
+
 @media screen and (max-width: 425px) {
   .header__container {
     width: calc(100% - 28px);
