@@ -1,0 +1,26 @@
+.movies {
+  max-width: 1140px;
+  width: calc(100% - 140px);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.movies__container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  .movies {
+    width: calc(100% - 60px);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .movies {
+    width: calc(100% - 20px);
+  }
+}

@@ -1,5 +1,5 @@
 function MoviesCard() {
-  return <p>Карточка</p>;
+  return ("УХ!");
 }
 
 export default MoviesCard;

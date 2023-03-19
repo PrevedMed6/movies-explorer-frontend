@@ -10,7 +10,7 @@ import "./Main.css";
 function Main() {
   return (
     <>
-      <Header logedIn={true} colored={true} />
+      <Header logedIn={false} colored={true} />
       <main className="main">
         <Promo />
         <NavTab />
