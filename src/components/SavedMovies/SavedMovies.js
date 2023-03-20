@@ -50,7 +50,9 @@ function SavedMovies() {
                 saved={true}
               />
               {savedCards.length < savedTotal ? (
-                <button type="button">Ещё</button>
+                <button type="button" className="movies__button">
+                  Ещё
+                </button>
               ) : (
                 ""
               )}

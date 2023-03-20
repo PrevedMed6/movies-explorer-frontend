@@ -1,4 +1,6 @@
 
+export const serverUrl = "https://api.nomoreparties.co";
+
 //В будущем будем узнавать на сервере
 export const total = 32;
 export const savedTotal = 4;

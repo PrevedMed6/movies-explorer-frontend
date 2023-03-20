@@ -5,8 +5,8 @@ import Line from "../Line/Line";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import NothingToShow from "../NothingToShow/NothingToShow";
 import Preloader from "../Preloader/Preloader";
-import "./Movies.css";
 import { cards, total } from "../../utils/constants";
+import "./Movies.css";
 
 import React from "react";
 
@@ -22,7 +22,7 @@ function Movies(props) {
   }
 
   function searchSubmit() {
-     //Имитируем загрузку
+    //Имитируем загрузку
     setIsLoaded(false);
     setTimeout(hideLoader, 5000);
   }
@@ -46,7 +46,13 @@ function Movies(props) {
           {cards.length > 0 ? (
             <>
               <MoviesCardList cards={cards} total={total} saved={false} />
-              {cards.length < total ? <button type="button">Ещё</button> : ""}
+              {cards.length < total ? (
+                <button type="button" className="movies__button">
+                  Ещё
+                </button>
+              ) : (
+                ""
+              )}
             </>
           ) : (
             <NothingToShow />
