@@ -1,8 +1,7 @@
-//Для тестирования сообщения об отсутствии записей
-//export const cards = [];
 
 //В будущем будем узнавать на сервере
 export const total = 32;
+export const savedTotal = 4;
 
 //В будущем будем узнавать на сервере
 export const cards = [

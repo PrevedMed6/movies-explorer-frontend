@@ -3,7 +3,7 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList(props) {
   const cardElements = props.cards.map((card) => (
-    <li className="element" key={card.id}>
+    <li className="movies-card-list__element" key={card.id}>
       <MoviesCard saved={props.saved} />
     </li>
   ));

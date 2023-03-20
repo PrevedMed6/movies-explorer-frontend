@@ -5,6 +5,7 @@ import iconPath from "../../images/search-icon.svg"
 function SearchForm(props) {
   function onSubmit(e) {
     e.preventDefault();
+    props.onSubmit();
   }
 
   return (

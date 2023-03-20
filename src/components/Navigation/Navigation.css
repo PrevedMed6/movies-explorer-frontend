@@ -52,6 +52,9 @@
 
 .navigation__link:hover {
   opacity: 0.5;
+}
+
+.navigation__link_active {
   border-bottom: solid 2px #fff;
 }
 

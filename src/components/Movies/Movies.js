@@ -21,6 +21,12 @@ function Movies(props) {
     setTimeout(hideLoader, 5000);
   }
 
+  function searchSubmit() {
+     //Имитируем загрузку
+    setIsLoaded(false);
+    setTimeout(hideLoader, 5000);
+  }
+
   function hideLoader() {
     setIsLoaded(true);
   }
@@ -29,13 +35,17 @@ function Movies(props) {
     <>
       <Header logedIn={true} colored={false} />
       <main className="movies">
-      {!isLoaded ? <Preloader /> : ""}
-        <SearchForm switcherClick={filterShortMetter} switcherOn={switcherOn} />
+        {!isLoaded ? <Preloader /> : ""}
+        <SearchForm
+          switcherClick={filterShortMetter}
+          switcherOn={switcherOn}
+          onSubmit={searchSubmit}
+        />
         <Line isGray={true} />
         <section className="movies__container" aria-label="cards">
           {cards.length > 0 ? (
             <>
-              <MoviesCardList cards={cards} total={total} saved={props} />
+              <MoviesCardList cards={cards} total={total} saved={false} />
               {cards.length < total ? <button type="button">Ещё</button> : ""}
             </>
           ) : (
