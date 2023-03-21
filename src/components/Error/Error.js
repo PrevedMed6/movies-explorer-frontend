@@ -1,7 +1,5 @@
-import React from "react";
-
 function Error() {
-  return <p>УПС!</p>;
+  return <div>Произошла ошибка! На следующем этапе мы научимся их обрабатывать</div>;
 }
 
 export default Error;

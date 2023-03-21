@@ -1,0 +1,116 @@
+.profile {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content auto min-content;
+  max-width: 410px;
+  height: calc(100vh - 74px);
+  margin: auto 30px;
+  font-weight: 400;
+}
+.profile__hello {
+  margin: calc(100vh * 0.1057) auto 0 auto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.21;
+  text-align: center;
+}
+
+.profile__form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto min-content;
+}
+
+.profile__submit {
+  border: none;
+  background: transparent;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.23;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: opacity 0.3s linear;
+}
+
+.profile__submit:hover {
+  opacity: 0.5;
+}
+
+.profile__logout {
+  margin-bottom: 70px;
+  border: none;
+  background: transparent;
+  color: #ee3465;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.23;
+  text-align: center;
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+}
+
+.profile__logout:hover {
+  opacity: 0.5;
+}
+
+.profile__input-container {
+  margin: calc(100vh * 0.1757) 0 0 0;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 62px;
+  padding: 0;
+}
+
+.profile__input {
+  text-align: end;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1.18;
+  text-align: right;
+  color: #fff;
+  border: none;
+  background: transparent;
+}
+
+.profile__label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.18;
+}
+
+.profile__field {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__logout {
+    margin-bottom: calc(100vh * 0.2627);
+  }
+  .profile__hello {
+    margin: calc(100vh * 0.2305) 0 0 0;
+  }
+  .profile__input-container {
+    margin: calc(100vh * 0.0937) 0 0 0;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .profile__logout {
+    margin-bottom: calc(100vh * 0.0513);
+  }
+  .profile__hello {
+    margin: calc(100vh * 0.0911) 0 0 0;
+  }
+  .profile__input-container {
+    margin: calc(100vh * 0.1042) 0 0 0;
+  }
+}

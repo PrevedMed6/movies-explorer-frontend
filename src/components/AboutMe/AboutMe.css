@@ -78,35 +78,6 @@
   border-radius: 10px;
 }
 
-.about-me__portfolio {
-  display: flex;
-  flex-direction: column;
-}
-
-.about-me__portfolio-header {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 1.11;
-  color: #8b8b8b;
-  margin: 0 0 50px 0;
-}
-
-.about-me__portfolio-list {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-}
-
-.about-me__portfolio-item {
-  list-style-type: none;
-  margin: 20px 0 0 0;
-}
-
-.about-me__portfolio-item:first-child {
-  margin-top: 0;
-}
 
 @media screen and (max-width: 768px) {
   .about-me__photo {
@@ -190,11 +161,5 @@
     font-size: 12px;
     line-height: 1.5;
     min-height: 132px;
-  }
-
-  .about-me__portfolio-header {
-    font-size: 14px;
-    line-height: 1,43;
-    margin: 0 0 40px 0;
   }
 }

@@ -1,8 +1,7 @@
 import LandingHeader from "../LandingHeader/LandingHeader";
-import AboutMeLink from "../AboutMeLink/AboutMeLink";
 import "./AboutMe.css";
 import photoPath from "../../images/photo.jpg";
-import Line from "../Line/Line";
+import Portfolio from "../Portfolio/Portfolio";
 
 function AboutMe() {
   return (
@@ -30,31 +29,7 @@ function AboutMe() {
           Github
         </a>
       </div>
-      <div className="about-me__portfolio">
-        <h2 className="about-me__portfolio-header">Портфолио</h2>
-        <ul className="about-me__portfolio-list">
-          <li className="about-me__portfolio-item">
-            <AboutMeLink
-              text="Статичный сайт"
-              href="https://prevedmed6.github.io/how-to-learn/"
-            />
-            <Line isGray={true} />
-          </li>
-          <li className="about-me__portfolio-item">
-            <AboutMeLink
-              text="Адаптивный сайт"
-              href="https://prevedmed6.github.io/russian-travel/"
-            />
-            <Line isGray={true} />
-          </li>
-          <li className="about-me__portfolio-item">
-            <AboutMeLink
-              text="Одностраничное приложение"
-              href="https://prevedmed6.github.io/mesto/"
-            />
-          </li>
-        </ul>
-      </div>
+      <Portfolio />
     </article>
   );
 }
