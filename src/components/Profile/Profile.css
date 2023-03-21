@@ -4,7 +4,7 @@
   grid-template-rows: min-content auto min-content;
   max-width: 410px;
   height: calc(100vh - 74px);
-  margin: auto 30px;
+  margin: auto;
   font-weight: 400;
 }
 .profile__hello {
@@ -100,6 +100,12 @@
   }
   .profile__input-container {
     margin: calc(100vh * 0.0937) 0 0 0;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .profile {
+    margin: auto 30px;
   }
 }
 
