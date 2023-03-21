@@ -44,16 +44,7 @@ function Movies(props) {
         <Line isGray={true} />
         <section className="movies__container" aria-label="cards">
           {cards.length > 0 ? (
-            <>
-              <MoviesCardList cards={cards} total={total} saved={false} />
-              {cards.length < total ? (
-                <button type="button" className="movies__button">
-                  Ещё
-                </button>
-              ) : (
-                ""
-              )}
-            </>
+            <MoviesCardList cards={cards} total={total} saved={false} />
           ) : (
             <NothingToShow />
           )}

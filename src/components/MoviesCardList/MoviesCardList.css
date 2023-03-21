@@ -17,3 +17,33 @@
   justify-content: center;
   background-color: #222222;
 }
+
+.movies-card-list__button {
+  height: 36px;
+  color: #fff;
+  background-color: #2F2F2F;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.3s linear;
+  margin: 50px 0 80px 0;
+}
+
+.movies-card-list__button:hover {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 768px) {
+  .movies-card-list {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 30px;
+    row-gap: 36px;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .movies-card-list {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

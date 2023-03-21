@@ -40,23 +40,14 @@ function SavedMovies() {
           switcherOn={switcherOn}
           onSubmit={searchSubmit}
         />
-        <Line />
+        <Line isGray={true} />
         <section className="movies__container" aria-label="cards">
           {savedCards.length > 0 ? (
-            <>
-              <MoviesCardList
-                cards={savedCards}
-                total={savedTotal}
-                saved={true}
-              />
-              {savedCards.length < savedTotal ? (
-                <button type="button" className="movies__button">
-                  Ещё
-                </button>
-              ) : (
-                ""
-              )}
-            </>
+            <MoviesCardList
+              cards={savedCards}
+              total={savedTotal}
+              saved={true}
+            />
           ) : (
             <NothingToShow />
           )}

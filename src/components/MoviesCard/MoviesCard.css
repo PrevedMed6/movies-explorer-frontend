@@ -1,7 +1,9 @@
 .movies-card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 100%;
+  height: 100%;
 }
 
 .movies-card__like {
@@ -12,11 +14,28 @@
   background-position: center;
   background-color: transparent;
   border: none;
-  width: 30px;
+  min-width: 30px;
   height: 30px;
   padding: 0;
 }
 .movies-card__like:hover {
+  opacity: 0.5;
+}
+
+.movies-card__delete {
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+  background: url(../../images/delete.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  min-width: 30px;
+  height: 30px;
+  padding: 0;
+}
+
+.movies-card__delete:hover {
   opacity: 0.5;
 }
 
@@ -29,6 +48,10 @@
   justify-content: space-between;
   align-items: center;
   margin: 14px;
+}
+
+.movies-card__header-text {
+  padding-right: 10px;
 }
 
 .movies-card__title {
