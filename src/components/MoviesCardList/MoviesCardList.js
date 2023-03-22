@@ -8,8 +8,8 @@ function MoviesCardList(props) {
     </li>
   ));
   return (
-    <>
-      <ul className="movies-card-list">{cardElements}</ul>
+    <div className="movies-card-list">
+      <ul className="movies-card-list__list">{cardElements}</ul>
       {props.cards.length < props.total ? (
         <button type="button" className="movies-card-list__button">
           Ещё
@@ -17,7 +17,7 @@ function MoviesCardList(props) {
       ) : (
         ""
       )}
-    </>
+    </div>
   );
 }
 
