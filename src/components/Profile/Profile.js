@@ -7,6 +7,7 @@ import "./Profile.css";
 function Profile() {
   const navigate = useNavigate();
   function editProfile(e) {
+    alert("Скоро мы научимся валидировать форму и  сохранять данные!");
     e.preventDefault();
   }
   function logOut() {
@@ -20,35 +21,35 @@ function Profile() {
         <h1 className="profile__hello">Привет, Евгения!</h1>
         <form className="profile__form">
           <fieldset className="profile__input-container">
-          <div className="profile__field">
-            <label className="profile__label" htmlFor="name">
-              Имя
-            </label>
-            <input
-              type="text"
-              className="profile__input"
-              name="name"
-              id="name"
-              minLength="2"
-              maxLength="30"
-              required
-              defaultValue="Евгения"
-            />
+            <div className="profile__field">
+              <label className="profile__label" htmlFor="name">
+                Имя
+              </label>
+              <input
+                type="text"
+                className="profile__input"
+                name="name"
+                id="name"
+                minLength="2"
+                maxLength="30"
+                required
+                defaultValue="Евгения"
+              />
             </div>
             <Line isGray={true} />
             <div className="profile__field">
-            <label className="profile__label" htmlFor="email">
-              E-mail
-            </label>
-            <input
-              type={"email"}
-              className="profile__input"
-              name="email"
-              id="email"
-              defaultValue="mymail@mail.com"
-              placeholder="mymail@mail.com"
-              required
-            />
+              <label className="profile__label" htmlFor="email">
+                E-mail
+              </label>
+              <input
+                type={"email"}
+                className="profile__input"
+                name="email"
+                id="email"
+                defaultValue="mymail@mail.com"
+                placeholder="mymail@mail.com"
+                required
+              />
             </div>
           </fieldset>
           <button

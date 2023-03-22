@@ -1,0 +1,29 @@
+.movies-presenter {
+  max-width: 1140px;
+  width: calc(100% - 140px);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.movies-presenter__container {
+  margin: 80px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .movies-presenter {
+    width: calc(100% - 60px);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .movies-presenter {
+    width: calc(100% - 20px);
+  }
+}
