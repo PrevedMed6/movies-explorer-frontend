@@ -1,0 +1,44 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+  height: 62px;
+  justify-content: space-between;
+}
+
+.form-field__label {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.2;
+  color: #8b8b8b;
+  margin-bottom: 5px;
+}
+
+.form-field__input {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  padding-left: 0;
+}
+
+.form-field__input_invalid {
+  color: #ee3465;
+}
+
+.form-field__message {
+  margin-top: 5px 0 1px 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  visibility: hidden;
+}
+
+.form-field__message_active {
+  visibility: visible;
+}

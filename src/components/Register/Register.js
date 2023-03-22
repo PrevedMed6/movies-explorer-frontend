@@ -1,8 +1,16 @@
 import Form from "../Form/Form";
 import FormField from "../FormField/FormField";
 import FormFieldset from "../FormFieldset/FormFieldset";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
+
+  function registerUser() {
+    alert("Скоро будем регистрировать!");
+    navigate("/movies", { replace: true });
+  }
+
   return (
     <Form
       header_text="Добро пожаловать!"
@@ -10,6 +18,7 @@ function Register() {
       footer_text="Уже зарегистрированы?"
       footer_link_text="Войти"
       footer_href="/signin"
+      onSubmit={registerUser}
     >
       <FormFieldset>
         <FormField
