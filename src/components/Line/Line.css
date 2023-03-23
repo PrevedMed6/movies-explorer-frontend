@@ -1,0 +1,11 @@
+.line {
+  width: 100%;
+  border: none;
+  height: 1px;
+  margin: 0;
+  background-color: #DADADA;
+}
+
+.line_gray {
+  background-color: #424242;
+}

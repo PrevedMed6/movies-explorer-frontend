@@ -1,0 +1,37 @@
+.portfolio {
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio__header {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.11;
+  color: #8b8b8b;
+  margin: 0 0 50px 0;
+}
+
+.portfolio__list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.portfolio__item {
+  list-style-type: none;
+  margin: 20px 0 0 0;
+}
+
+.portfolio__item:first-child {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 570px) {
+  .portfolio__header {
+    font-size: 14px;
+    line-height: 1.43;
+    margin: 0 0 40px 0;
+  }
+}

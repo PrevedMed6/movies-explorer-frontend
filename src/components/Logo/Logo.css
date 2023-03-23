@@ -1,0 +1,14 @@
+.logo {
+  transition: opacity 0.3s linear;
+  width: 38px;
+  height: 38px;
+}
+
+.logo:hover {
+  opacity: 0.5;
+}
+
+.logo__picture {
+  width: 38px;
+  height: 38px;
+}

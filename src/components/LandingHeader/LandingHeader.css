@@ -1,0 +1,17 @@
+.landing-header__text {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 1.23;
+  letter-spacing: -0.04em;
+  margin: 0 0 22px 0;
+}
+
+@media screen and (max-width: 425px) {
+  .landing-header__text {
+    font-size: 18px;
+    line-height: 1.22;
+    margin-bottom: 28px;
+  }
+}
