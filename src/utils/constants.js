@@ -1,5 +1,9 @@
 
+//url внешнего сервера
 export const serverUrl = "https://api.nomoreparties.co";
+export const nothingToShowText = "К сожалению, ничего не найдено";
+export const moviesErrorText = "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз";
+
 
 //В будущем будем узнавать на сервере
 export const total = 32;

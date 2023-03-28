@@ -1,6 +1,7 @@
 import React from "react";
 import "./MoviesCard.css";
 import { serverUrl } from "../../utils/constants";
+import {getDurationString} from "../../utils/utility";
 
 function MoviesCard(props) {
   const [isLiked, setIsLiked] = React.useState(false);
@@ -18,7 +19,7 @@ function MoviesCard(props) {
       <div className="movies-card__header">
         <div className="movies-card__header-text">
           <p className="movies-card__title">{props.card.nameRU}</p>
-          <p className="movies-card__duration">1ч 47м</p>
+          <p className="movies-card__duration">{getDurationString(props.card.duration)}</p>
         </div>
         {!props.saved ? (
           <button

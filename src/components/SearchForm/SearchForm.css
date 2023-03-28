@@ -1,5 +1,5 @@
 .search-form {
-  margin: 70px 0;
+  margin: 70px 0 50px 0;
   display: grid;
   grid-template-columns: 1fr min-content min-content;
   grid-template-rows: 1fr;
@@ -65,6 +65,15 @@
 .search-form__button:hover {
   opacity: 0.5;
 }
+.search-form__error {
+  color: #ee3465;
+  height: 20px;
+  padding-left: 20px;
+  visibility: hidden;
+}
+.search-form__error_active {
+  visibility:visible
+}
 
 @media screen and (max-width: 768px) {
   .search-form__switcher {
@@ -81,9 +90,9 @@
     display: none;
   }
   .search-form__switcher {
-    margin: 46px auto;
+    margin: 26px auto;
     grid-column: 1/4;
-    grid-row: 2;
+    grid-row: 3;
   }
   .search-form__input-container {
     grid-column: 1/4;
@@ -101,8 +110,4 @@
   .search-form__button {
     margin: 0 0 0 19px;
   }
-}
-
-@media screen and (max-width: 485px) {
-
 }
