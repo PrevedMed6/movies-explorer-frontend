@@ -6,9 +6,10 @@ import "./Profile.css";
 
 function Profile() {
   const navigate = useNavigate();
+
   function editProfile(e) {
-    alert("Скоро мы научимся валидировать форму и  сохранять данные!");
     e.preventDefault();
+    alert('Типа сохранили');
   }
   function logOut() {
     navigate("/", { replace: true });
@@ -19,7 +20,7 @@ function Profile() {
       <Header logedIn={true} colored={false} />
       <main className="profile">
         <h1 className="profile__hello">Привет, Евгения!</h1>
-        <form className="profile__form">
+        <form className="profile__form" onSubmit={editProfile}>
           <fieldset className="profile__input-container">
             <div className="profile__field">
               <label className="profile__label" htmlFor="name">
@@ -36,6 +37,7 @@ function Profile() {
                 defaultValue="Евгения"
               />
             </div>
+            <span className="profile__input-error" name="name-error"></span>
             <Line isGray={true} />
             <div className="profile__field">
               <label className="profile__label" htmlFor="email">
@@ -51,11 +53,11 @@ function Profile() {
                 required
               />
             </div>
+            <span className="profile__input-error" name="name-error"></span>
           </fieldset>
           <button
             type="submit"
             className="profile__submit"
-            onClick={editProfile}
           >
             Редактировать
           </button>

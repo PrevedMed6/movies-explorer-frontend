@@ -31,8 +31,8 @@ function Movies() {
         setCards(cards);
         setFilteredCards(filteredCards);
         setWasError(false);
-        localStorage.setItem("switcher", switcher);
-        localStorage.setItem("searchString", searchString);
+        localStorage.setItem("switcher", switcherOn);
+        localStorage.setItem("searchString", searchText);
         setIsLoaded(true);
       })
       .catch((err) => {
@@ -50,10 +50,12 @@ function Movies() {
     getCards(searchString, switcher);
   }
 
-  function switcherClick(switcherOn) {
-    const filteredCards = filterCards(searchString, switcherOn, cards);
+  function switcherClick(switcherOn, newSearchString) {
+    const filteredCards = filterCards(newSearchString, switcherOn, cards);
     setFilteredCards(filteredCards);
     setSwitcher(switcherOn);
+    setSearchString(newSearchString);
+    localStorage.setItem("searchString", newSearchString);
     localStorage.setItem("switcher", switcherOn);
     localStorage.setItem("filteredCards", JSON.stringify(filteredCards));
   }

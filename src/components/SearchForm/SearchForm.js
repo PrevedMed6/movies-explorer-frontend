@@ -17,7 +17,7 @@ function SearchForm(props) {
   function switcherClick() {
     const newSwitcher = !switcher;
     setSwitcher(newSwitcher);
-    props.switcherClick(newSwitcher);
+    props.switcherClick(newSwitcher, searchString);
   }
   function searchStringChanged(e) {
     setSearchString(e.target.value);

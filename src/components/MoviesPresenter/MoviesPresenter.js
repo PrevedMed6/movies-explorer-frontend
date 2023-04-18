@@ -15,8 +15,8 @@ function MoviesPresenter(props) {
     props.searchSubmit(searchString, switcher);
   }
 
-  function switcherClick(switcher) {
-    props.switcherClick(switcher);
+  function switcherClick(switcher, searchString) {
+    props.switcherClick(switcher, searchString);
   }
 
   return (

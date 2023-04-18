@@ -19,7 +19,9 @@ function Header(props) {
     { href: "/saved-movies", text: "Сохраненные фильмы" },
   ];
   const resizeHandler = () => {
-    setShowBurger(document.documentElement.clientWidth <= 768);
+    setTimeout(() => {
+      setShowBurger(document.documentElement.clientWidth <= 768);
+    }, 1000);
   };
 
   React.useEffect(() => {
