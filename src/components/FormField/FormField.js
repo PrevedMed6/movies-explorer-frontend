@@ -4,12 +4,22 @@ import "./FormField.css";
 function FormField(props) {
   return (
     <div className="form-field">
-      <label htmlFor={props.fieldId} className="form-field__label">{props.label}</label>
-      <input id={props.fieldId}
+      <label htmlFor={props.fieldId} className="form-field__label">
+        {props.label}
+      </label>
+      <input
+        id={props.fieldId}
+        name={props.fieldId}
         type={props.type}
         className={`form-field__input ${
           props.isValid ? "" : "form-field__input_invalid"
-        }`} defaultValue={props.defaultValue}
+        }`}
+        defaultValue={props.defaultValue}
+        onChange={props.onChange}
+        required={props.required}
+        minLength={props.minLength}
+        maxLength={props.maxLength}
+        pattern={props.pattern}
       ></input>
       <Line isGray={true} />
       <span
@@ -17,7 +27,7 @@ function FormField(props) {
           props.isValid ? "" : "form-field__message_active"
         }`}
       >
-        Что-то пошло не так...
+        {props.error}
       </span>
     </div>
   );

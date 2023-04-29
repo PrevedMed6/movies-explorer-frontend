@@ -33,13 +33,15 @@
 }
 
 .form-field__message {
-  margin: 5px 0;
   font-style: normal;
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
+  height: 23px;
   color: #ee3465;
   visibility: hidden;
+  display: flex;
+  align-items: center;
 }
 
 .form-field__message_active {

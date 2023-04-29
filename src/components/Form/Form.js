@@ -12,9 +12,14 @@ function Form(props) {
         <Logo />
         <h1 className="form__header-text">{props.header_text}</h1>
       </div>
-      <form className="form__form-body" onSubmit={submitForm}>
+      <form className="form__form-body" onSubmit={submitForm} noValidate>
         {props.children}
-        <button type="submit" className="form__submit">
+        <button
+          type="submit"
+          className={`form__submit ${
+            props.isValid ? "" : "form__submit_disabled"
+          }`}
+        >
           {props.submit_text}
         </button>
       </form>

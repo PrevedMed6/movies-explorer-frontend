@@ -1,4 +1,4 @@
-import React, { useCallback } from "./react";
+import React, { useCallback } from "react";
 
 //хук управления формой и валидации формы
 export function useFormWithValidation() {
@@ -10,8 +10,8 @@ export function useFormWithValidation() {
     const target = event.target;
     const name = target.name;
     const value = target.value;
-    setValues({...values, [name]: value});
-    setErrors({...errors, [name]: target.validationMessage });
+    setValues({ ...values, [name]: value });
+    setErrors({ ...errors, [name]: target.validationMessage });
     setIsValid(target.closest("form").checkValidity());
   };
 
