@@ -4,7 +4,9 @@ import "./Form.css";
 function Form(props) {
   function submitForm(e) {
     e.preventDefault();
-    props.onSubmit();
+    if (props.isValid) {
+      props.onSubmit();
+    }
   }
   return (
     <section className="form">

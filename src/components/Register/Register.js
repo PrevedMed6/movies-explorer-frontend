@@ -8,10 +8,8 @@ function Register() {
   const navigate = useNavigate();
   const { values, handleChange, errors, isValid } = useFormWithValidation();
   function registerUser() {
-    if (isValid) {
-      alert("Скоро будем регистрировать!");
-      navigate("/movies", { replace: true });
-    }
+    alert("Скоро будем регистрировать!");
+    navigate("/movies", { replace: true });
   }
 
   return (

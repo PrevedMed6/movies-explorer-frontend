@@ -3,13 +3,18 @@ import { useNavigate } from "react-router-dom";
 import Line from "../Line/Line";
 import Header from "../Header/Header";
 import "./Profile.css";
+import { useFormWithValidation } from "../../utils/validation";
 
 function Profile() {
   const navigate = useNavigate();
-
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormWithValidation();
   function editProfile(e) {
     e.preventDefault();
-    alert('Типа сохранили');
+    if (isValid) {
+      alert("Типа сохранили");
+      resetForm();
+    }
   }
   function logOut() {
     navigate("/", { replace: true });
@@ -20,7 +25,7 @@ function Profile() {
       <Header logedIn={true} colored={false} />
       <main className="profile">
         <h1 className="profile__hello">Привет, Евгения!</h1>
-        <form className="profile__form" onSubmit={editProfile}>
+        <form className="profile__form" onSubmit={editProfile} noValidate>
           <fieldset className="profile__input-container">
             <div className="profile__field">
               <label className="profile__label" htmlFor="name">
@@ -28,16 +33,29 @@ function Profile() {
               </label>
               <input
                 type="text"
-                className="profile__input"
+                className={`profile__input ${
+                  errors["name"] ? "profile__input_invalid" : ""
+                }`}
                 name="name"
                 id="name"
                 minLength="2"
                 maxLength="30"
                 required
                 defaultValue="Евгения"
+                value={values["name"]}
+                error={errors["name"]}
+                onChange={handleChange}
+                pattern="[a-zA-ZА-Яа-яЁё -]+"
               />
             </div>
-            <span className="profile__input-error" name="name-error"></span>
+            <span
+              className={`profile__input-error ${
+                errors["name"] ? "profile__input-error_active" : ""
+              }`}
+              name="name-error"
+            >
+              {errors["name"]}
+            </span>
             <Line isGray={true} />
             <div className="profile__field">
               <label className="profile__label" htmlFor="email">
@@ -45,19 +63,32 @@ function Profile() {
               </label>
               <input
                 type={"email"}
-                className="profile__input"
+                className={`profile__input ${
+                  errors["email"] ? "profile__input_invalid" : ""
+                }`}
                 name="email"
                 id="email"
                 defaultValue="mymail@mail.com"
                 placeholder="mymail@mail.com"
                 required
+                value={values["email"]}
+                error={errors["email"]}
+                onChange={handleChange}
+                pattern='^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
               />
             </div>
-            <span className="profile__input-error" name="name-error"></span>
+            <span
+              className={`profile__input-error ${
+                errors["email"] ? "profile__input-error_active" : ""
+              }`}
+              name="name-error"
+            ></span>
           </fieldset>
           <button
             type="submit"
-            className="profile__submit"
+            className={`profile__submit ${
+              isValid ? "" : "profile__submit_inactive"
+            }`}
           >
             Редактировать
           </button>
