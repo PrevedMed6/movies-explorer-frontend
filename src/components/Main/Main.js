@@ -7,10 +7,10 @@ import Techs from "../Techs/Techs";
 import AboutMe from "../AboutMe/AboutMe";
 import "./Main.css";
 
-function Main() {
+function Main(props) {
   return (
     <>
-      <Header logedIn={false} colored={true} />
+      <Header loggedIn={props.loggedIn} colored={true} />
       <main className="main">
         <Promo />
         <NavTab />

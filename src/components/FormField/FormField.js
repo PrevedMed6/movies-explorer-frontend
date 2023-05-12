@@ -20,6 +20,7 @@ function FormField(props) {
         minLength={props.minLength}
         maxLength={props.maxLength}
         pattern={props.pattern}
+        autoComplete={props.autocomplete}
       ></input>
       <Line isGray={true} />
       <span

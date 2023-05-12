@@ -46,7 +46,8 @@
 }
 
 .profile__logout {
-  margin-bottom: 70px;
+  width: fit-content;
+  margin: 0 auto 70px auto;
   border: none;
   background: transparent;
   color: #ee3465;

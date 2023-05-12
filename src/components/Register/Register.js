@@ -1,15 +1,31 @@
 import Form from "../Form/Form";
 import FormField from "../FormField/FormField";
 import FormFieldset from "../FormFieldset/FormFieldset";
+import MainApi from "../../utils/MainApi";
 import { useNavigate } from "react-router-dom";
 import { useFormWithValidation } from "../../utils/validation";
+import React from "react";
 
 function Register() {
+  const [formErrorText, setFormErrorText] = React.useState("");
   const navigate = useNavigate();
   const { values, handleChange, errors, isValid } = useFormWithValidation();
+  function onFormChanged(target){
+    setFormErrorText("");
+    handleChange(target);
+  }
   function registerUser() {
-    alert("Скоро будем регистрировать!");
-    navigate("/movies", { replace: true });
+    MainApi
+      .register(values["name"], values["email"], values["password"])
+      .then(() => {
+        alert("тут надо логинить!");
+        navigate("/movies", { replace: true });
+      })
+      .catch((result) => {
+        result.json().then((err) => {
+          setFormErrorText(err.message);
+        });
+      });
   }
 
   return (
@@ -21,6 +37,7 @@ function Register() {
       footer_href="/signin"
       onSubmit={registerUser}
       isValid={isValid}
+      formErrorText={formErrorText}
     >
       <FormFieldset>
         <FormField
@@ -31,33 +48,35 @@ function Register() {
           isValid={errors["name"] ? false : true}
           value={values["name"]}
           error={errors["name"]}
-          onChange={handleChange}
+          onChange={onFormChanged}
           required={true}
           minLength={2}
           maxLength={30}
-          pattern="[a-zA-ZА-Яа-яЁё -]+"
+          pattern="[a-zA-ZА-Яа-яЁё \-]+"
         />
         <FormField
           type="email"
           fieldId="email"
           defaultValue=""
+          autocomplete="username"
           label="E-mail"
           isValid={errors["email"] ? false : true}
           value={values["email"]}
           error={errors["email"]}
-          onChange={handleChange}
+          onChange={onFormChanged}
           required={true}
-          pattern='^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+          pattern="^\w+([\.\-]?\w+)*@\w+([\.\-]?\w+)*(\.\w{2,3})+$"
         />
         <FormField
           type="password"
           label="Пароль"
           fieldId="password"
+          autocomplete="new-password"
           defaultValue=""
           isValid={errors["password"] ? false : true}
           value={values["password"]}
           error={errors["password"]}
-          onChange={handleChange}
+          onChange={onFormChanged}
           required={true}
         />
       </FormFieldset>

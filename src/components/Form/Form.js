@@ -16,6 +16,7 @@ function Form(props) {
       </div>
       <form className="form__form-body" onSubmit={submitForm} noValidate>
         {props.children}
+        <span className="form__form-error-text">{props.formErrorText}</span>
         <button
           type="submit"
           className={`form__submit ${

@@ -1,6 +1,6 @@
 import React from "react";
 import "./MoviesCard.css";
-import { serverUrl } from "../../utils/constants";
+import { externalUrl } from "../../utils/constants";
 import { getDurationString } from "../../utils/utility";
 
 function MoviesCard(props) {
@@ -44,7 +44,7 @@ function MoviesCard(props) {
           className="movies-card__body"
           role="img"
           style={{
-            backgroundImage: `url(${serverUrl}${props.card.image.url})`,
+            backgroundImage: `url(${externalUrl}${props.card.image.url})`,
           }}
         ></div>
       </a>

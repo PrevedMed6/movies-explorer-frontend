@@ -4,11 +4,11 @@ import Form from "../Form/Form";
 import { useNavigate } from "react-router-dom";
 import { useFormWithValidation } from "../../utils/validation";
 
-function Login() {
+function Login(props) {
   const navigate = useNavigate();
   const { values, handleChange, errors, isValid } = useFormWithValidation();
   function loginUser() {
-    alert("Скоро будем логинить!");
+    props.onLogin(values["email"], values["password"]);
     navigate("/movies", { replace: true });
   }
 
@@ -26,6 +26,7 @@ function Login() {
         <FormField
           type="email"
           fieldId="email"
+          autocomplete="username"
           defaultValue=""
           label="E-mail"
           isValid={errors["email"] ? false : true}
@@ -33,12 +34,13 @@ function Login() {
           error={errors["email"]}
           onChange={handleChange}
           required={true}
-          pattern='^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+          pattern="^\w+([\.\-]?\w+)*@\w+([\.\-]?\w+)*(\.\w{2,3})+$"
         />
         <FormField
           type="password"
           label="Пароль"
           fieldId="password"
+          autocomplete="current-password"
           defaultValue=""
           isValid={errors["password"] ? false : true}
           value={values["password"]}

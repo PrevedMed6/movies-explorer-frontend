@@ -21,8 +21,7 @@ export function filterCards(searchText, switcherOn, cards) {
   return result;
 }
 
-export function filterShortMetter(cards)
-{
+export function filterShortMetter(cards) {
   return cards.filter((card) => {
     return card.duration <= 40;
   });

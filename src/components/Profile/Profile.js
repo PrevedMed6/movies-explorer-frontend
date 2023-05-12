@@ -41,11 +41,10 @@ function Profile() {
                 minLength="2"
                 maxLength="30"
                 required
-                defaultValue="Евгения"
-                value={values["name"]}
+                value={values["name"]||""}
                 error={errors["name"]}
                 onChange={handleChange}
-                pattern="[a-zA-ZА-Яа-яЁё -]+"
+                pattern="[a-zA-ZА-Яа-яЁё \-]+"
               />
             </div>
             <span
@@ -68,13 +67,12 @@ function Profile() {
                 }`}
                 name="email"
                 id="email"
-                defaultValue="mymail@mail.com"
                 placeholder="mymail@mail.com"
                 required
-                value={values["email"]}
+                value={values["email"]||""}
                 error={errors["email"]}
                 onChange={handleChange}
-                pattern='^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+                pattern="^\w+([\.\-]?\w+)*@\w+([\.\-]?\w+)*(\.\w{2,3})+$"
               />
             </div>
             <span
