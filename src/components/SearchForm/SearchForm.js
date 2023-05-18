@@ -17,7 +17,7 @@ function SearchForm(props) {
   function switcherClick() {
     const newSwitcher = !switcher;
     setSwitcher(newSwitcher);
-    props.switcherClick(newSwitcher, searchString);
+    props.switcherClick(searchString, newSwitcher);
   }
   function searchStringChanged(e) {
     setSearchString(e.target.value);
@@ -51,7 +51,7 @@ function SearchForm(props) {
           value={searchString || ""}
           onChange={searchStringChanged}
           onInput={searchStringInput}
-          required
+          required={!props.saved}
         ></input>
         <button type="submit" className="search-form__button"></button>
       </div>

@@ -8,17 +8,23 @@ function Popup({ component: Comp, ...props }) {
   }
   return (
     <section
-      className={props.isOpen ? `popup popup_opened` : `popup`}
+      className={`popup ${props.isOpen ? "popup_opened" : ""} ${
+        props.isMenu ? "popup_is-menu" : ""
+      }`}
       aria-label="Навигация по сайту"
       onClick={handleClose}
     >
-      <div className="popup__container">
+      <div
+        className={`popup__container ${
+          props.isMenu ? "popup__container_is-menu" : ""
+        }`}
+      >
         <button
           type="button"
           className="popup__close"
           onClick={handleClose}
         ></button>
-        <Comp {...props}/>
+        <Comp {...props} />
       </div>
     </section>
   );

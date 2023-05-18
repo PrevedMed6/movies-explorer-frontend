@@ -10,16 +10,18 @@ import Profile from "../Profile/Profile";
 import Signin from "../Login/Login";
 import Signup from "../Register/Register";
 import Popup from "../Popup/Popup";
-import ErrorText from "../ErrorText/ErrorText";
+import MessageText from "../MessageText/MessageText";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import MainApi from "../../utils/MainApi";
+import { errorHeader, successHeader } from "../../utils/constants";
 
 function App() {
   let navigate = useNavigate();
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState();
   const [popupIsOpen, setPopupIsOpen] = React.useState(false);
-  const [errorText, setErrorText] = React.useState("");
+  const [messageText, setMessageText] = React.useState("");
+  const [messageHeader, setMessageHeader] = React.useState("");
   const [tockenChecked, setTockenChecked] = React.useState(false);
   const [formErrorText, setFormErrorText] = React.useState("");
 
@@ -39,6 +41,7 @@ function App() {
       .catch(() => {
         setLoggedIn(false);
         setCurrentUser({});
+        localStorage.clear();
       })
       .finally(() => {
         setTockenChecked(true);
@@ -61,6 +64,7 @@ function App() {
       .then((res) => {
         setLoggedIn(false);
         navigate("/");
+        localStorage.clear();
         return res;
       })
       .catch((result) => {
@@ -84,32 +88,54 @@ function App() {
 
   function hidePopup() {
     setPopupIsOpen(false);
-    setErrorText("");
+    setMessageText("");
+    setMessageHeader("");
+  }
+
+  function handleMessage(header, message) {
+    setMessageText(message);
+    setMessageHeader(header);
+    setPopupIsOpen(true);
   }
 
   function handleError(message) {
-    setErrorText(message);
-    setPopupIsOpen(true);
+    handleMessage(errorHeader, message);
   }
+
+  function handleSuccess(message) {
+    handleMessage(successHeader, message);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Popup
         isOpen={popupIsOpen}
         onClose={hidePopup}
-        component={ErrorText}
-        message={errorText}
+        component={MessageText}
+        message={messageText}
+        header={messageHeader}
       />
       {tockenChecked ? (
         <Routes>
           <Route path="/" element={<Main loggedIn={loggedIn} />} />
           <Route
             path="/movies"
-            element={<ProtectedRoute loggedIn={loggedIn} component={Movies} />}
+            element={
+              <ProtectedRoute
+                loggedIn={loggedIn}
+                handleError={handleError}
+                component={Movies}
+              />
+            }
           />
           <Route
             path="/saved-movies"
             element={
-              <ProtectedRoute loggedIn={loggedIn} component={SavedMovies} />
+              <ProtectedRoute
+                loggedIn={loggedIn}
+                component={SavedMovies}
+                handleError={handleError}
+              />
             }
           />
           <Route
@@ -119,14 +145,14 @@ function App() {
                 loggedIn={loggedIn}
                 component={Profile}
                 onLogout={handleLogout}
+                handleError={handleError}
+                handleSuccess={handleSuccess}
               />
             }
           />
           <Route
             path="/signin"
-            element={
-              <Signin onLogin={handleLogin} errorText={formErrorText} />
-            }
+            element={<Signin onLogin={handleLogin} errorText={formErrorText} />}
           />
           <Route
             path="/signup"

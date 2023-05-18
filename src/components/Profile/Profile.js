@@ -32,10 +32,13 @@ function Profile(props) {
     if (isValid) {
       MainApi.updateUser(name, email)
         .then((res) => {
+          props.handleSuccess("Изменения успешно сохранены");
           resetForm();
         })
-        .catch((error) => {
-          console.log(error);
+        .catch((result) => {
+          result.json().then((err) => {
+            props.handleError(err.message);
+          });
         });
     }
   }

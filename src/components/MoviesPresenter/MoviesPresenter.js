@@ -28,6 +28,7 @@ function MoviesPresenter(props) {
           switcher={props.switcher}
           searchString={props.searchString}
           switcherClick={switcherClick}
+          saved = {props.saved}
         />
         <Line isGray={true} />
         <section className="movies-presenter__container" aria-label="cards">
@@ -39,6 +40,9 @@ function MoviesPresenter(props) {
                   cards={props.cards}
                   total={props.total}
                   saved={props.saved}
+                  handleDeleteMovie={props.handleDeleteMovie}
+                  handleSaveMovie={props.handleSaveMovie}
+                  handleError={props.handleError}
                 />
               ) : (
                 <MessageContainer message={nothingToShowText} />

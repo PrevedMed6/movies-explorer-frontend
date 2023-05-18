@@ -1,6 +1,11 @@
 import MoviesPresenter from "../MoviesPresenter/MoviesPresenter";
 import moviesApi from "../../utils/MoviesApi";
-import { filterCards } from "../../utils/utility";
+import mainApi from "../../utils/MainApi";
+import {
+  filterCards,
+  mapExternalCards,
+  updateStore,
+} from "../../utils/utility";
 import "./Movies.css";
 
 import React from "react";
@@ -14,25 +19,33 @@ function Movies(props) {
   const [wasError, setWasError] = React.useState(false);
 
   React.useEffect(() => {
-    setCards(JSON.parse(localStorage.getItem("cards")));
-    setFilteredCards(JSON.parse(localStorage.getItem("filteredCards")));
+    const storedCards = localStorage.getItem("cards");
+    if (storedCards) {
+      setCards(JSON.parse(storedCards));
+    }
+    const storedFilteredCards = localStorage.getItem("filteredCards");
+    if (storedFilteredCards) {
+      setFilteredCards(JSON.parse(storedFilteredCards));
+    }
     setSwitcher(localStorage.getItem("switcher") === "true");
     setSearchString(localStorage.getItem("searchString"));
   }, []);
 
   function getCards(searchText, switcherOn) {
     setIsLoaded(false);
-    moviesApi
-      .getMovies()
-      .then((cards) => {
-        const filteredCards = filterCards(searchText, switcherOn, cards);
+    Promise.all([moviesApi.getMovies(), mainApi.getSavedMovies()])
+      .then(([result, savedResult]) => {
+        const mappedResult = mapExternalCards(result, savedResult);
+        const filteredFilms = filterCards(searchText, switcherOn, mappedResult);
         setSwitcher(switcherOn);
         setSearchString(searchText);
-        setCards(cards);
-        setFilteredCards(filteredCards);
+        setCards(mappedResult);
+        setFilteredCards(filteredFilms);
         setWasError(false);
         localStorage.setItem("switcher", switcherOn);
         localStorage.setItem("searchString", searchText);
+        localStorage.setItem("cards", JSON.stringify(mappedResult));
+        localStorage.setItem("filteredCards", JSON.stringify(filteredFilms));
         setIsLoaded(true);
       })
       .catch((err) => {
@@ -40,24 +53,61 @@ function Movies(props) {
         setCards([]);
         setFilteredCards([]);
         setIsLoaded(true);
-      })
-      .finally(() => {
-        localStorage.setItem("cards", JSON.stringify(cards));
-        localStorage.setItem("filteredCards", JSON.stringify(filteredCards));
+        localStorage.setItem("cards", []);
+        localStorage.setItem("filteredCards", []);
       });
   }
   function searchSubmit(searchString, switcher) {
     getCards(searchString, switcher);
   }
 
-  function switcherClick(switcherOn, newSearchString) {
-    const filteredCards = filterCards(newSearchString, switcherOn, cards);
-    setFilteredCards(filteredCards);
+  function switcherClick(newSearchString, switcherOn) {
+    const filteredFilms = filterCards(newSearchString, switcherOn, cards);
+    setFilteredCards(filteredFilms);
     setSwitcher(switcherOn);
     setSearchString(newSearchString);
     localStorage.setItem("searchString", newSearchString);
     localStorage.setItem("switcher", switcherOn);
-    localStorage.setItem("filteredCards", JSON.stringify(filteredCards));
+    localStorage.setItem("filteredCards", JSON.stringify(filteredFilms));
+  }
+
+  function handleDeleteMovie(movieId) {
+    return mainApi
+      .deleteMovie(movieId)
+      .then((deletedMovie) => {
+        updateStore(false, deletedMovie.data.movieId, null);
+      })
+      .catch((result) => {
+        result.json().then((err) => {
+          props.handleError(err.message);
+        });
+      });
+  }
+
+  function handleSaveMovie(movie) {
+    return mainApi
+      .saveMovie(movie)
+      .then((savedMovie) => {
+        refreshLikes(true, savedMovie.data.movieId, savedMovie.data._id);
+      })
+      .catch((result) => {
+        result.json().then((err) => {
+          props.handleError(err.message);
+        });
+      });
+  }
+
+  function refreshLikes(isLiked, movieId, innerId) {
+    const { cloneCards, filteredFilms } = updateStore(
+      cards,
+      movieId,
+      isLiked,
+      innerId,
+      searchString,
+      switcher
+    );
+    setCards(cloneCards);
+    setFilteredCards(filteredFilms);
   }
 
   return (
@@ -72,6 +122,9 @@ function Movies(props) {
       isLoaded={isLoaded}
       wasError={wasError}
       loggedIn={props.loggedIn}
+      handleDeleteMovie={handleDeleteMovie}
+      handleSaveMovie={handleSaveMovie}
+      handleError={props.handleError}
     />
   );
 }

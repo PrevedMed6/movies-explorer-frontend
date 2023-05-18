@@ -52,6 +52,7 @@ function Header(props) {
           links={verticalMenuLinks}
           onClose={hideMenu}
           vertical={true}
+          isMenu={true}
           component={Navigation}
         />
         <Logo />

@@ -49,11 +49,20 @@ function MoviesCardList(props) {
       setElementsPerPage(5);
       setElementsToAdd(2);
     }
+    if (props.saved) {
+      setElementsPerPage(props.total);
+    }
   }
 
   const cardElements = cardsToShow.map((card) => (
-    <li className="movies-card-list__element" key={card.id}>
-      <MoviesCard saved={props.saved} card={card} />
+    <li className="movies-card-list__element" key={card.movieId}>
+      <MoviesCard
+        saved={props.saved}
+        card={card}
+        handleDeleteMovie={props.handleDeleteMovie}
+        handleSaveMovie={props.handleSaveMovie}
+        handleError={props.handleError}
+      />
     </li>
   ));
   return (

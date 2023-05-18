@@ -77,6 +77,53 @@ class MainApi {
       return this._getResponseData(res);
     });
   }
+
+  //Сохранить фильм
+  saveMovie(card) {
+    return fetch(`${serverUrl}/movies`, {
+      credentials: "include",
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        country: card.country,
+        director: card.director,
+        duration: card.duration,
+        year: card.year,
+        description: card.description,
+        image: card.image,
+        trailerLink: card.trailerLink,
+        thumbnail: card.thumbnail,
+        owner: card.owner,
+        movieId: card.movieId,
+        nameRU: card.nameRU,
+        nameEN: card.nameEN,
+      }),
+    }).then((res) => {
+      return this._getResponseData(res);
+    });
+  }
+
+  //Удалить фильм
+  deleteMovie(filmID) {
+    return fetch(`${serverUrl}/movies/${filmID}`, {
+      credentials: "include",
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => {
+      return this._getResponseData(res);
+    });
+  }
+
+  //Получить сохраненные фильмы
+  getSavedMovies(userID){
+    return fetch(`${serverUrl}/movies`, {
+      credentials: "include",
+      method: "GET",
+      headers: this._headers,
+    }).then((res) => {
+      return this._getResponseData(res);
+    });
+  }
 }
 
 const mainApi = new MainApi({
