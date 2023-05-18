@@ -8,7 +8,7 @@ function MoviesCard(props) {
   }
 
   function deleteMovie() {
-    props.handleDeleteMovie(props.card._id);
+    props.handleDeleteMovie(props.card);
   }
 
   function saveMovie() {

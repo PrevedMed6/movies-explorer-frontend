@@ -1,4 +1,4 @@
-import { serverUrl } from "../utils/constants";
+import { SERVER_URL } from "../utils/constants";
 
 class MainApi {
   constructor(options) {
@@ -14,7 +14,7 @@ class MainApi {
 
   //Зарегистрировать пользователя
   register(name, email, password) {
-    return fetch(`${serverUrl}/signup`, {
+    return fetch(`${SERVER_URL}/signup`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({ name, email, password }),
@@ -24,7 +24,7 @@ class MainApi {
   }
 
   login(email, password) {
-    return fetch(`${serverUrl}/signin`, {
+    return fetch(`${SERVER_URL}/signin`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -38,7 +38,7 @@ class MainApi {
   }
 
   logOut() {
-    return fetch(`${serverUrl}/signout`, {
+    return fetch(`${SERVER_URL}/signout`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -51,7 +51,7 @@ class MainApi {
   }
 
   getMe() {
-    return fetch(`${serverUrl}/users/me`, {
+    return fetch(`${SERVER_URL}/users/me`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -65,7 +65,7 @@ class MainApi {
 
   //Обновить данные о пользователе
   updateUser(name, email) {
-    return fetch(`${serverUrl}/users/me`, {
+    return fetch(`${SERVER_URL}/users/me`, {
       credentials: "include",
       method: "PATCH",
       headers: this._headers,
@@ -80,7 +80,7 @@ class MainApi {
 
   //Сохранить фильм
   saveMovie(card) {
-    return fetch(`${serverUrl}/movies`, {
+    return fetch(`${SERVER_URL}/movies`, {
       credentials: "include",
       method: "POST",
       headers: this._headers,
@@ -105,7 +105,7 @@ class MainApi {
 
   //Удалить фильм
   deleteMovie(filmID) {
-    return fetch(`${serverUrl}/movies/${filmID}`, {
+    return fetch(`${SERVER_URL}/movies/${filmID}`, {
       credentials: "include",
       method: "DELETE",
       headers: this._headers,
@@ -115,8 +115,8 @@ class MainApi {
   }
 
   //Получить сохраненные фильмы
-  getSavedMovies(userID){
-    return fetch(`${serverUrl}/movies`, {
+  getSavedMovies() {
+    return fetch(`${SERVER_URL}/movies`, {
       credentials: "include",
       method: "GET",
       headers: this._headers,

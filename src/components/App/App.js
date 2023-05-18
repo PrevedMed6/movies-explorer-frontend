@@ -6,6 +6,7 @@ import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import UnprotectedRoute from "../UnprotectedRoute/UnprotectedRoute";
 import Profile from "../Profile/Profile";
 import Signin from "../Login/Login";
 import Signup from "../Register/Register";
@@ -13,7 +14,7 @@ import Popup from "../Popup/Popup";
 import MessageText from "../MessageText/MessageText";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import MainApi from "../../utils/MainApi";
-import { errorHeader, successHeader } from "../../utils/constants";
+import { ERROR_HEADER, SUCCESS_HEADER } from "../../utils/constants";
 
 function App() {
   let navigate = useNavigate();
@@ -99,11 +100,11 @@ function App() {
   }
 
   function handleError(message) {
-    handleMessage(errorHeader, message);
+    handleMessage(ERROR_HEADER, message);
   }
 
   function handleSuccess(message) {
-    handleMessage(successHeader, message);
+    handleMessage(SUCCESS_HEADER, message);
   }
 
   return (
@@ -152,12 +153,21 @@ function App() {
           />
           <Route
             path="/signin"
-            element={<Signin onLogin={handleLogin} errorText={formErrorText} />}
+            element={
+              <UnprotectedRoute
+                loggedIn={loggedIn}
+                component={Signin}
+                onLogin={handleLogin}
+                errorText={formErrorText}
+              />
+            }
           />
           <Route
             path="/signup"
             element={
-              <Signup
+              <UnprotectedRoute
+                loggedIn={loggedIn}
+                component={Signup}
                 handleRegister={handleRegister}
                 errorText={formErrorText}
               />

@@ -29,19 +29,19 @@ function SavedMovies(props) {
     setSavedSwitcher(switcher);
   }
 
-  function handleDeleteMovie(movieId) {
+  function handleDeleteMovie(movie) {
     return mainApi
-      .deleteMovie(movieId)
+      .deleteMovie(movie._id)
       .then((deletedMovie) => {
         refreshLikes(deletedMovie);
         setSavedCards((state) =>
           state.filter((c) => {
-            return c._id !== movieId;
+            return c._id !== movie._id;
           })
         );
         setSavedFilteredCards((state) =>
           state.filter((c) => {
-            return c._id !== movieId;
+            return c._id !== movie._id;
           })
         );
       })

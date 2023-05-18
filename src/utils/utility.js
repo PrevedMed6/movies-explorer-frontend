@@ -1,4 +1,4 @@
-import { externalUrl } from "./constants";
+import { EXTERNAL_URL } from "./constants";
 
 export function getDurationString(duration) {
   const hours = parseInt(duration / 60);
@@ -42,9 +42,9 @@ export function mapExternalCards(result, savedResult) {
       duration: movie.duration,
       year: movie.year,
       description: movie.description,
-      image: `${externalUrl}${movie.image.url}`,
+      image: `${EXTERNAL_URL}${movie.image.url}`,
       trailerLink: movie.trailerLink,
-      thumbnail: `${externalUrl}${movie.image.formats.thumbnail.url}`,
+      thumbnail: `${EXTERNAL_URL}${movie.image.formats.thumbnail.url}`,
       movieId: movie.id,
       nameRU: movie.nameRU,
       nameEN: movie.nameEN,

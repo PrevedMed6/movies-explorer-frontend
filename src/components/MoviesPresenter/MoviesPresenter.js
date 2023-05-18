@@ -5,7 +5,7 @@ import Line from "../Line/Line";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import MessageContainer from "../MessageContainer/MessageContainer";
 import Preloader from "../Preloader/Preloader";
-import { nothingToShowText, moviesErrorText } from "../../utils/constants";
+import { NOTHING_TO_SHOW_TEXT, MOVIES_ERROR_TEXT } from "../../utils/constants";
 import "./MoviesPresenter.css";
 
 import React from "react";
@@ -28,7 +28,7 @@ function MoviesPresenter(props) {
           switcher={props.switcher}
           searchString={props.searchString}
           switcherClick={switcherClick}
-          saved = {props.saved}
+          saved={props.saved}
         />
         <Line isGray={true} />
         <section className="movies-presenter__container" aria-label="cards">
@@ -45,13 +45,13 @@ function MoviesPresenter(props) {
                   handleError={props.handleError}
                 />
               ) : (
-                <MessageContainer message={nothingToShowText} />
+                <MessageContainer message={NOTHING_TO_SHOW_TEXT} />
               )
             ) : (
               ""
             )
           ) : (
-            <MessageContainer message={moviesErrorText} />
+            <MessageContainer message={MOVIES_ERROR_TEXT} />
           )}
         </section>
       </main>

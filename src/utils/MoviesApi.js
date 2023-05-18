@@ -1,4 +1,4 @@
-import { externalUrl } from "../utils/constants";
+import { EXTERNAL_URL } from "../utils/constants";
 
 class MoviesApi {
   constructor(options) {
@@ -14,7 +14,7 @@ class MoviesApi {
 
   //Получить все фильмы
   getMovies() {
-    return fetch(`${externalUrl}/beatfilm-movies`, {
+    return fetch(`${EXTERNAL_URL}/beatfilm-movies`, {
       headers: this._headers,
     }).then((res) => {
       return this._getResponseData(res);

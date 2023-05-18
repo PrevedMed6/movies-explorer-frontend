@@ -71,11 +71,11 @@ function Movies(props) {
     localStorage.setItem("filteredCards", JSON.stringify(filteredFilms));
   }
 
-  function handleDeleteMovie(movieId) {
+  function handleDeleteMovie(movie) {
     return mainApi
-      .deleteMovie(movieId)
+      .deleteMovie(movie.innerId)
       .then((deletedMovie) => {
-        updateStore(false, deletedMovie.data.movieId, null);
+        refreshLikes(false, deletedMovie.data.movieId, null);
       })
       .catch((result) => {
         result.json().then((err) => {
