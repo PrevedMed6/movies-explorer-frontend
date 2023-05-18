@@ -33,7 +33,7 @@ function Header(props) {
   }, []);
 
   function goToLogIn() {
-    navigate("/signin", { replace: true });
+    navigate("/signin");
   }
 
   function showMenu() {
@@ -51,9 +51,11 @@ function Header(props) {
           isOpen={menuIsOpen}
           links={verticalMenuLinks}
           onClose={hideMenu}
+          vertical={true}
+          component={Navigation}
         />
         <Logo />
-        {!props.logedIn ? (
+        {!props.loggedIn ? (
           <nav className="header__menu">
             <a href="/signup" className="header__menu-link">
               Регистрация

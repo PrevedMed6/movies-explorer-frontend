@@ -1,30 +1,53 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import Line from "../Line/Line";
 import Header from "../Header/Header";
 import "./Profile.css";
 import { useFormWithValidation } from "../../utils/validation";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import MainApi from "../../utils/MainApi";
 
-function Profile() {
-  const navigate = useNavigate();
-  const { values, handleChange, errors, isValid, resetForm } =
-    useFormWithValidation();
+function Profile(props) {
+  const { handleChange, errors, isValid, resetForm } = useFormWithValidation();
+  const currentUser = React.useContext(CurrentUserContext);
+  const [name, setName] = React.useState(currentUser?.name);
+  const [email, setEmail] = React.useState(currentUser?.email);
+
+  React.useEffect(() => {
+    setName(currentUser?.name);
+    setEmail(currentUser?.email);
+  }, [currentUser]);
+
+  function handleNameChange(e) {
+    setName(e.target.value);
+    handleChange(e);
+  }
+
+  function handleEmailChange(e) {
+    setEmail(e.target.value);
+    handleChange(e);
+  }
+
   function editProfile(e) {
     e.preventDefault();
     if (isValid) {
-      alert("Типа сохранили");
-      resetForm();
+      MainApi.updateUser(name, email)
+        .then((res) => {
+          resetForm();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   }
   function logOut() {
-    navigate("/", { replace: true });
+    props.onLogout();
   }
 
   return (
     <>
-      <Header logedIn={true} colored={false} />
+      <Header loggedIn={props.loggedIn} colored={false} />
       <main className="profile">
-        <h1 className="profile__hello">Привет, Евгения!</h1>
+        <h1 className="profile__hello">Привет, {name}!</h1>
         <form className="profile__form" onSubmit={editProfile} noValidate>
           <fieldset className="profile__input-container">
             <div className="profile__field">
@@ -41,9 +64,9 @@ function Profile() {
                 minLength="2"
                 maxLength="30"
                 required
-                value={values["name"]||""}
+                value={name || ""}
                 error={errors["name"]}
-                onChange={handleChange}
+                onChange={handleNameChange}
                 pattern="[a-zA-ZА-Яа-яЁё \-]+"
               />
             </div>
@@ -69,9 +92,9 @@ function Profile() {
                 id="email"
                 placeholder="mymail@mail.com"
                 required
-                value={values["email"]||""}
+                value={email || ""}
                 error={errors["email"]}
-                onChange={handleChange}
+                onChange={handleEmailChange}
                 pattern="^\w+([\.\-]?\w+)*@\w+([\.\-]?\w+)*(\.\w{2,3})+$"
               />
             </div>

@@ -1,7 +1,6 @@
-import Navigation from "../Navigation/Navigation";
 import "./Popup.css";
 
-function Popup(props) {
+function Popup({ component: Comp, ...props }) {
   function handleClose(e) {
     if (e.target === e.currentTarget) {
       props.onClose();
@@ -19,7 +18,7 @@ function Popup(props) {
           className="popup__close"
           onClick={handleClose}
         ></button>
-        <Navigation links={props.links} vertical={true}/>
+        <Comp {...props}/>
       </div>
     </section>
   );

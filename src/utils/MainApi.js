@@ -39,7 +39,7 @@ class MainApi {
 
   logOut() {
     return fetch(`${serverUrl}/signout`, {
-      method: "GET",
+      method: "POST",
       credentials: "include",
       headers: {
         Accept: "application/json",
@@ -58,6 +58,21 @@ class MainApi {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+    }).then((res) => {
+      return this._getResponseData(res);
+    });
+  }
+
+  //Обновить данные о пользователе
+  updateUser(name, email) {
+    return fetch(`${serverUrl}/users/me`, {
+      credentials: "include",
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        email: email,
+      }),
     }).then((res) => {
       return this._getResponseData(res);
     });

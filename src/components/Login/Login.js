@@ -1,15 +1,19 @@
 import FormField from "../FormField/FormField";
 import FormFieldset from "../FormFieldset/FormFieldset";
 import Form from "../Form/Form";
-import { useNavigate } from "react-router-dom";
 import { useFormWithValidation } from "../../utils/validation";
+import React from "react";
 
 function Login(props) {
-  const navigate = useNavigate();
   const { values, handleChange, errors, isValid } = useFormWithValidation();
+  const [formErrorText, setFormErrorText] = React.useState("");
+
+  React.useEffect(() => {
+    setFormErrorText(props.errorText);
+  }, [props.errorText]);
+
   function loginUser() {
     props.onLogin(values["email"], values["password"]);
-    navigate("/movies", { replace: true });
   }
 
   return (
@@ -21,6 +25,7 @@ function Login(props) {
       footer_href="/signup"
       onSubmit={loginUser}
       isValid={isValid}
+      formErrorText={formErrorText}
     >
       <FormFieldset>
         <FormField

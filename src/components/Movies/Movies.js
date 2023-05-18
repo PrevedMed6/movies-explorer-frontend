@@ -5,7 +5,7 @@ import "./Movies.css";
 
 import React from "react";
 
-function Movies() {
+function Movies(props) {
   const [cards, setCards] = React.useState([]);
   const [filteredCards, setFilteredCards] = React.useState([]);
   const [switcher, setSwitcher] = React.useState(false);
@@ -71,6 +71,7 @@ function Movies() {
       switcherClick={switcherClick}
       isLoaded={isLoaded}
       wasError={wasError}
+      loggedIn={props.loggedIn}
     />
   );
 }

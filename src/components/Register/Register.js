@@ -1,31 +1,24 @@
 import Form from "../Form/Form";
 import FormField from "../FormField/FormField";
 import FormFieldset from "../FormFieldset/FormFieldset";
-import MainApi from "../../utils/MainApi";
-import { useNavigate } from "react-router-dom";
 import { useFormWithValidation } from "../../utils/validation";
 import React from "react";
 
-function Register() {
+function Register(props) {
   const [formErrorText, setFormErrorText] = React.useState("");
-  const navigate = useNavigate();
   const { values, handleChange, errors, isValid } = useFormWithValidation();
-  function onFormChanged(target){
+
+  React.useEffect(() => {
+    setFormErrorText(props.errorText);
+  }, [props.errorText]);
+
+  function onFormChanged(target) {
     setFormErrorText("");
     handleChange(target);
   }
+
   function registerUser() {
-    MainApi
-      .register(values["name"], values["email"], values["password"])
-      .then(() => {
-        alert("тут надо логинить!");
-        navigate("/movies", { replace: true });
-      })
-      .catch((result) => {
-        result.json().then((err) => {
-          setFormErrorText(err.message);
-        });
-      });
+    props.handleRegister(values["name"], values["email"], values["password"]);
   }
 
   return (

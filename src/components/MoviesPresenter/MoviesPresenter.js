@@ -21,7 +21,7 @@ function MoviesPresenter(props) {
 
   return (
     <>
-      <Header logedIn={true} colored={false} />
+      <Header loggedIn={props.loggedIn} colored={false} />
       <main className="movies-presenter">
         <SearchForm
           onSubmit={searchSubmit}
