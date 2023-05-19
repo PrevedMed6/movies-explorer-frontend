@@ -9,11 +9,25 @@ function MoviesCardList(props) {
   const [cards, setCards] = React.useState(props.cards);
 
   React.useEffect(() => {
-    doSettings();
     setCards(props.cards);
   }, [props.cards]);
 
   React.useEffect(() => {
+    function doSettings() {
+      if (document.documentElement.clientWidth > 768) {
+        setElementsPerPage(12);
+        setElementsToAdd(3);
+      } else if (document.documentElement.clientWidth > 480) {
+        setElementsPerPage(8);
+        setElementsToAdd(2);
+      } else {
+        setElementsPerPage(5);
+        setElementsToAdd(2);
+      }
+      if (props.saved) {
+        setElementsPerPage(props.total);
+      }
+    }
     const resizeHandler = () => {
       setTimeout(() => {
         doSettings();
@@ -24,7 +38,7 @@ function MoviesCardList(props) {
     return () => {
       window.removeEventListener("resize", resizeHandler);
     };
-  }, []);
+  }, [props.saved, props.total]);
 
   React.useEffect(() => {
     setCardsToShow(cards.slice(0, elementsPerPage));
@@ -34,22 +48,6 @@ function MoviesCardList(props) {
     if (elementsPerPage + elementsToAdd <= props.total) {
       setElementsPerPage(elementsPerPage + elementsToAdd);
     } else {
-      setElementsPerPage(props.total);
-    }
-  }
-
-  function doSettings() {
-    if (document.documentElement.clientWidth > 768) {
-      setElementsPerPage(12);
-      setElementsToAdd(3);
-    } else if (document.documentElement.clientWidth > 480) {
-      setElementsPerPage(8);
-      setElementsToAdd(2);
-    } else {
-      setElementsPerPage(5);
-      setElementsToAdd(2);
-    }
-    if (props.saved) {
       setElementsPerPage(props.total);
     }
   }
