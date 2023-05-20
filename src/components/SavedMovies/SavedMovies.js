@@ -30,6 +30,7 @@ function SavedMovies(props) {
     setSavedFilteredCards(filteredFilms);
     setSavedSearchString(searchString);
     setSavedSwitcher(switcher);
+    setWasSearched(true);
   }
 
   function handleDeleteMovie(movie) {
