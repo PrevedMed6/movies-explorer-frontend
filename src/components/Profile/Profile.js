@@ -11,20 +11,27 @@ function Profile(props) {
   const currentUser = React.useContext(CurrentUserContext);
   const [name, setName] = React.useState(currentUser?.name);
   const [email, setEmail] = React.useState(currentUser?.email);
+  const [somethingChanged, setSomethingChanged] = React.useState(false);
 
-  React.useEffect(() => {
+   React.useEffect(() => {
     setName(currentUser?.name);
     setEmail(currentUser?.email);
   }, [currentUser]);
 
   function handleNameChange(e) {
     setName(e.target.value);
+    setSomethingChanged(checkIfChanged(e.target.value, email));
     handleChange(e);
   }
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
+    setSomethingChanged(checkIfChanged(name, e.target.value));
     handleChange(e);
+  }
+
+  function checkIfChanged(newName, newEmail) {
+    return newName !== currentUser?.name || email !== currentUser?.email;
   }
 
   function editProfile(e) {
@@ -111,7 +118,7 @@ function Profile(props) {
           <button
             type="submit"
             className={`profile__submit ${
-              isValid ? "" : "profile__submit_inactive"
+              isValid && somethingChanged ? "" : "profile__submit_inactive"
             }`}
           >
             Редактировать
