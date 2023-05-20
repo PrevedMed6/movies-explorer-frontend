@@ -15,6 +15,7 @@ function Movies(props) {
   const [filteredCards, setFilteredCards] = React.useState([]);
   const [switcher, setSwitcher] = React.useState(false);
   const [isLoaded, setIsLoaded] = React.useState(true);
+  const [wasSearched, setWasSearched] = React.useState(false);
   const [searchString, setSearchString] = React.useState("");
   const [wasError, setWasError] = React.useState(false);
 
@@ -47,6 +48,7 @@ function Movies(props) {
         localStorage.setItem("cards", JSON.stringify(mappedResult));
         localStorage.setItem("filteredCards", JSON.stringify(filteredFilms));
         setIsLoaded(true);
+        setWasSearched(true);
       })
       .catch((err) => {
         setWasError(true);
@@ -120,6 +122,7 @@ function Movies(props) {
       searchSubmit={searchSubmit}
       switcherClick={switcherClick}
       isLoaded={isLoaded}
+      wasSearched={wasSearched}
       wasError={wasError}
       loggedIn={props.loggedIn}
       handleDeleteMovie={handleDeleteMovie}
