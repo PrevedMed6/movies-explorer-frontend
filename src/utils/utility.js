@@ -1,4 +1,4 @@
-import { EXTERNAL_URL } from "./constants";
+import { EXTERNAL_URL, SHORT_METER_DURATION } from "./constants";
 
 export function getDurationString(duration) {
   const hours = parseInt(duration / 60);
@@ -27,7 +27,7 @@ export function filterCards(searchText, switcherOn, cards) {
 
 export function filterShortMetter(cards) {
   return cards.filter((card) => {
-    return card.duration <= 40;
+    return card.duration <= SHORT_METER_DURATION;
   });
 }
 

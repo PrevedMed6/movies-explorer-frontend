@@ -1,6 +1,16 @@
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import React from "react";
+import {
+  LARGE_MOBILE,
+  LARGE_MOBILE_ELEMENTS_PER_PAGE,
+  LARGE_MOBILE_ELEMENTS_TO_ADD,
+  TABLET,
+  TABLET_ELEMENTS_PER_PAGE,
+  TABLET_ELEMENTS_TO_ADD,
+  DESC_TOP_ELEMENTS_PER_PAGE,
+  DESC_TOP_ELEMENTS_TO_ADD,
+} from "../../utils/constants";
 
 function MoviesCardList(props) {
   const [elementsPerPage, setElementsPerPage] = React.useState(12);
@@ -14,15 +24,15 @@ function MoviesCardList(props) {
 
   React.useEffect(() => {
     function doSettings() {
-      if (document.documentElement.clientWidth > 768) {
-        setElementsPerPage(12);
-        setElementsToAdd(3);
-      } else if (document.documentElement.clientWidth > 480) {
-        setElementsPerPage(8);
-        setElementsToAdd(2);
+      if (document.documentElement.clientWidth > TABLET) {
+        setElementsPerPage(DESC_TOP_ELEMENTS_PER_PAGE);
+        setElementsToAdd(DESC_TOP_ELEMENTS_TO_ADD);
+      } else if (document.documentElement.clientWidth > LARGE_MOBILE) {
+        setElementsPerPage(TABLET_ELEMENTS_PER_PAGE);
+        setElementsToAdd(TABLET_ELEMENTS_TO_ADD);
       } else {
-        setElementsPerPage(5);
-        setElementsToAdd(2);
+        setElementsPerPage(LARGE_MOBILE_ELEMENTS_PER_PAGE);
+        setElementsToAdd(LARGE_MOBILE_ELEMENTS_TO_ADD);
       }
       if (props.saved) {
         setElementsPerPage(props.total);
