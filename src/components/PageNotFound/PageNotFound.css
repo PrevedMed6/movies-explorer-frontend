@@ -31,6 +31,9 @@
   font-style: normal;
   text-decoration: none;
   transition: opacity 0.3s linear;
+  border: none;
+  padding: 0;
+  background: transparent;
 }
 
 .page-not-found__nav-link:hover {
