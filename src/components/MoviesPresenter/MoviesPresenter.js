@@ -34,7 +34,7 @@ function MoviesPresenter(props) {
         <section className="movies-presenter__container" aria-label="cards">
           {!props.isLoaded ? <Preloader /> : ""}
           {!props.wasError ? (
-            props.cards && props.wasSearched ? (
+            (props.cards && props.wasSearched) ? (
               props.cards.length > 0 ? (
                 <MoviesCardList
                   cards={props.cards}

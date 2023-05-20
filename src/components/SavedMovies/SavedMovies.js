@@ -11,6 +11,8 @@ function SavedMovies(props) {
   const [isLoaded, setIsLoaded] = React.useState(true);
   const [savedSearchString, setSavedSearchString] = React.useState("");
   const [wasError, setWasError] = React.useState(false);
+  const [wasSearched, setWasSearched] = React.useState(false);
+
   React.useEffect(() => {
     mainApi
       .getSavedMovies()
@@ -18,6 +20,7 @@ function SavedMovies(props) {
         setSavedFilteredCards(savedResult.data);
         setSavedCards(savedResult.data);
         setIsLoaded(true);
+        setWasSearched(savedResult.data.length > 0);
       })
       .catch((err) => setWasError(true));
   }, []);
@@ -76,7 +79,7 @@ function SavedMovies(props) {
       switcherClick={searchSubmit}
       isLoaded={isLoaded}
       wasError={wasError}
-      wasSearched={true}
+      wasSearched={wasSearched}
       loggedIn={props.loggedIn}
       handleDeleteMovie={handleDeleteMovie}
       handleError={props.handleError}
