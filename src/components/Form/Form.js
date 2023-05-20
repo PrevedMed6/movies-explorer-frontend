@@ -4,7 +4,9 @@ import "./Form.css";
 function Form(props) {
   function submitForm(e) {
     e.preventDefault();
-    props.onSubmit();
+    if (props.isValid) {
+      props.onSubmit();
+    }
   }
   return (
     <section className="form">
@@ -12,9 +14,15 @@ function Form(props) {
         <Logo />
         <h1 className="form__header-text">{props.header_text}</h1>
       </div>
-      <form className="form__form-body" onSubmit={submitForm}>
+      <form className="form__form-body" onSubmit={submitForm} noValidate>
         {props.children}
-        <button type="submit" className="form__submit">
+        <span className="form__form-error-text">{props.formErrorText}</span>
+        <button
+          type="submit"
+          className={`form__submit ${
+            props.isValid ? "" : "form__submit_disabled"
+          }`}
+        >
           {props.submit_text}
         </button>
       </form>

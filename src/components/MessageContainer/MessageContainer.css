@@ -1,0 +1,18 @@
+.message-container {
+  margin: 0 auto;
+  width: fit-content;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 425px) {
+  .message-container {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+}

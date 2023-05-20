@@ -1,16 +1,31 @@
 import React from "react";
 import "./MoviesCard.css";
-import { serverUrl } from "../../utils/constants";
+import { getDurationString } from "../../utils/utility";
 
 function MoviesCard(props) {
-  const [isLiked, setIsLiked] = React.useState(false);
-
   function likeClick() {
-    setIsLiked(!isLiked);
+    props.card.isLiked ? deleteMovie() : saveMovie();
   }
 
-  function deleteCard() {
-    alert("Скоро мы научимся удалять карточки");
+  function deleteMovie() {
+    props.handleDeleteMovie(props.card);
+  }
+
+  function saveMovie() {
+    const movie = {
+      country: props.card.country,
+      director: props.card.director,
+      duration: props.card.duration,
+      year: props.card.year,
+      description: props.card.description,
+      image: props.card.image,
+      trailerLink: props.card.trailerLink,
+      thumbnail: props.card.thumbnail,
+      movieId: props.card.movieId,
+      nameRU: props.card.nameRU,
+      nameEN: props.card.nameEN,
+    };
+    props.handleSaveMovie(movie);
   }
 
   return (
@@ -18,29 +33,40 @@ function MoviesCard(props) {
       <div className="movies-card__header">
         <div className="movies-card__header-text">
           <p className="movies-card__title">{props.card.nameRU}</p>
-          <p className="movies-card__duration">1ч 47м</p>
+          <p className="movies-card__duration">
+            {getDurationString(props.card.duration)}
+          </p>
         </div>
         {!props.saved ? (
           <button
             type="button"
             onClick={likeClick}
             className={`movies-card__like ${
-              isLiked ? "movies-card__like_active" : ""
+              props.card.isLiked ? "movies-card__like_active" : ""
             }`}
           ></button>
         ) : (
           <button
             type="button"
             className="movies-card__delete"
-            onClick={deleteCard}
+            onClick={deleteMovie}
           ></button>
         )}
       </div>
-      <div
-        className="movies-card__body"
-        role="img"
-        style={{ backgroundImage: `url(${serverUrl}${props.card.image.url})` }}
-      ></div>
+      <a
+        href={props.card.trailerLink}
+        target={"_blank"}
+        rel="noreferrer"
+        className="movies-card__trailer-link"
+      >
+        <div
+          className="movies-card__body"
+          role="img"
+          style={{
+            backgroundImage: `url(${props.card.image})`,
+          }}
+        ></div>
+      </a>
     </div>
   );
 }

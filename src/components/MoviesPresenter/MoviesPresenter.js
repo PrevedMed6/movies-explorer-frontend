@@ -3,49 +3,55 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import Line from "../Line/Line";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import NothingToShow from "../NothingToShow/NothingToShow";
+import MessageContainer from "../MessageContainer/MessageContainer";
 import Preloader from "../Preloader/Preloader";
+import { NOTHING_TO_SHOW_TEXT, MOVIES_ERROR_TEXT } from "../../utils/constants";
 import "./MoviesPresenter.css";
 
 import React from "react";
 
-function Movies(props) {
-  const [switcherOn, setSwitcherOn] = React.useState(false);
-  const [isLoaded, setIsLoaded] = React.useState(true);
-
-  function filterShortMetter() {
-    setSwitcherOn(!switcherOn);
-    //Имитируем загрузку
-    setIsLoaded(false);
-    setTimeout(hideLoader, 5000);
+function MoviesPresenter(props) {
+  function searchSubmit(searchString, switcher) {
+    props.searchSubmit(searchString, switcher);
   }
 
-  function searchSubmit() {
-    //Имитируем загрузку
-    setIsLoaded(false);
-    setTimeout(hideLoader, 5000);
-  }
-
-  function hideLoader() {
-    setIsLoaded(true);
+  function switcherClick(switcher, searchString) {
+    props.switcherClick(switcher, searchString);
   }
 
   return (
     <>
-      <Header logedIn={true} colored={false} />
+      <Header loggedIn={props.loggedIn} colored={false} />
       <main className="movies-presenter">
-        {!isLoaded ? <Preloader /> : ""}
         <SearchForm
-          switcherClick={filterShortMetter}
-          switcherOn={switcherOn}
           onSubmit={searchSubmit}
+          switcher={props.switcher}
+          searchString={props.searchString}
+          switcherClick={switcherClick}
+          saved={props.saved}
         />
         <Line isGray={true} />
         <section className="movies-presenter__container" aria-label="cards">
-          {props.cards.length > 0 ? (
-            <MoviesCardList cards={props.cards} total={props.total} saved={props.saved} />
+          {!props.isLoaded ? <Preloader /> : ""}
+          {!props.wasError ? (
+            (props.cards && props.wasSearched) ? (
+              props.cards.length > 0 ? (
+                <MoviesCardList
+                  cards={props.cards}
+                  total={props.total}
+                  saved={props.saved}
+                  handleDeleteMovie={props.handleDeleteMovie}
+                  handleSaveMovie={props.handleSaveMovie}
+                  handleError={props.handleError}
+                />
+              ) : (
+                <MessageContainer message={NOTHING_TO_SHOW_TEXT} />
+              )
+            ) : (
+              ""
+            )
           ) : (
-            <NothingToShow />
+            <MessageContainer message={MOVIES_ERROR_TEXT} />
           )}
         </section>
       </main>
@@ -54,4 +60,4 @@ function Movies(props) {
   );
 }
 
-export default Movies;
+export default MoviesPresenter;

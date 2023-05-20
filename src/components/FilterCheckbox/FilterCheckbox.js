@@ -1,7 +1,7 @@
 import "./FilterCheckbox.css";
 
 function FilterCheckbox(props) {
-  const switchedOn = props.on;
+  const switchedOn = props.switchedOn;
   function switchSearch(e) {
     e.preventDefault();
     props.onClick();
@@ -10,7 +10,7 @@ function FilterCheckbox(props) {
     <div className="filter-check-box">
       <button
         className={`filter-check-box__button${
-          switchedOn ? " filter-check-box__button_off" : ""
+          !switchedOn ? " filter-check-box__button_off":""
         }`}
         onClick={switchSearch}
       ></button>

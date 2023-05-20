@@ -1,7 +1,6 @@
-import Navigation from "../Navigation/Navigation";
 import "./Popup.css";
 
-function Popup(props) {
+function Popup({ component: Comp, ...props }) {
   function handleClose(e) {
     if (e.target === e.currentTarget) {
       props.onClose();
@@ -9,17 +8,23 @@ function Popup(props) {
   }
   return (
     <section
-      className={props.isOpen ? `popup popup_opened` : `popup`}
+      className={`popup ${props.isOpen ? "popup_opened" : ""} ${
+        props.isMenu ? "popup_is-menu" : ""
+      }`}
       aria-label="Навигация по сайту"
       onClick={handleClose}
     >
-      <div className="popup__container">
+      <div
+        className={`popup__container ${
+          props.isMenu ? "popup__container_is-menu" : ""
+        }`}
+      >
         <button
           type="button"
           className="popup__close"
           onClick={handleClose}
         ></button>
-        <Navigation links={props.links} vertical={true}/>
+        <Comp {...props} />
       </div>
     </section>
   );
