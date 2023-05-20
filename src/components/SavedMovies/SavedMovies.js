@@ -76,6 +76,7 @@ function SavedMovies(props) {
       switcherClick={searchSubmit}
       isLoaded={isLoaded}
       wasError={wasError}
+      wasSearched={true}
       loggedIn={props.loggedIn}
       handleDeleteMovie={handleDeleteMovie}
       handleError={props.handleError}

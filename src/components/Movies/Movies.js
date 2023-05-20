@@ -23,6 +23,7 @@ function Movies(props) {
     const storedCards = localStorage.getItem("cards");
     if (storedCards) {
       setCards(JSON.parse(storedCards));
+      setWasSearched(true);
     }
     const storedFilteredCards = localStorage.getItem("filteredCards");
     if (storedFilteredCards) {
@@ -37,16 +38,9 @@ function Movies(props) {
     Promise.all([moviesApi.getMovies(), mainApi.getSavedMovies()])
       .then(([result, savedResult]) => {
         const mappedResult = mapExternalCards(result, savedResult);
-        const filteredFilms = filterCards(searchText, switcherOn, mappedResult);
-        setSwitcher(switcherOn);
-        setSearchString(searchText);
-        setCards(mappedResult);
-        setFilteredCards(filteredFilms);
+        const filteredFilms = doSearch(searchText, switcherOn, mappedResult);
+        fixSearchResult(searchText, switcherOn, mappedResult, filteredFilms);
         setWasError(false);
-        localStorage.setItem("switcher", switcherOn);
-        localStorage.setItem("searchString", searchText);
-        localStorage.setItem("cards", JSON.stringify(mappedResult));
-        localStorage.setItem("filteredCards", JSON.stringify(filteredFilms));
         setIsLoaded(true);
         setWasSearched(true);
       })
@@ -59,18 +53,18 @@ function Movies(props) {
         localStorage.setItem("filteredCards", []);
       });
   }
-  function searchSubmit(searchString, switcher) {
-    getCards(searchString, switcher);
+  function searchSubmit(newSearchString, switcherOn) {
+    if (cards.length === 0) {
+      getCards(newSearchString, switcherOn);
+    } else {
+      const filteredFilms = doSearch(newSearchString, switcherOn, cards);
+      fixSearchResult(newSearchString, switcherOn, cards, filteredFilms);
+    }
   }
 
   function switcherClick(newSearchString, switcherOn) {
-    const filteredFilms = filterCards(newSearchString, switcherOn, cards);
-    setFilteredCards(filteredFilms);
-    setSwitcher(switcherOn);
-    setSearchString(newSearchString);
-    localStorage.setItem("searchString", newSearchString);
-    localStorage.setItem("switcher", switcherOn);
-    localStorage.setItem("filteredCards", JSON.stringify(filteredFilms));
+    const filteredFilms = doSearch(newSearchString, switcherOn, cards);
+    fixSearchResult(newSearchString, switcherOn, cards, filteredFilms);
   }
 
   function handleDeleteMovie(movie) {
@@ -110,6 +104,22 @@ function Movies(props) {
     );
     setCards(cloneCards);
     setFilteredCards(filteredFilms);
+  }
+
+  function doSearch(searchText, switcherOn, mappedFilms) {
+    const filteredFilms = filterCards(searchText, switcherOn, mappedFilms);
+    return filteredFilms;
+  }
+
+  function fixSearchResult(searchText, switcherOn, mappedFilms, filteredFilms) {
+    setSwitcher(switcherOn);
+    setSearchString(searchText);
+    setCards(mappedFilms);
+    setFilteredCards(filteredFilms);
+    localStorage.setItem("switcher", switcherOn);
+    localStorage.setItem("searchString", searchText);
+    localStorage.setItem("cards", JSON.stringify(mappedFilms));
+    localStorage.setItem("filteredCards", JSON.stringify(filteredFilms));
   }
 
   return (
